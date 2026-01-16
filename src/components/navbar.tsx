@@ -55,8 +55,8 @@ export function Navbar() {
                                     key={item.href}
                                     href={item.href}
                                     className={cn(
-                                        "text-lg font-light uppercase transition-colors hover:text-white",
-                                        isActive ? "text-white" : "text-white/70"
+                                        "text-lg uppercase transition-colors hover:text-white",
+                                        isActive ? "text-white font-medium" : "text-white/70 font-light"
                                     )}
                                 >
                                     {item.label}
