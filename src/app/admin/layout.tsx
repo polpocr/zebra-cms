@@ -22,7 +22,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
 } from "@/components/ui/sidebar"
-import { SignOutButton, useUser } from "@clerk/nextjs"
+import { SignOutButton, useClerk, useUser } from "@clerk/nextjs"
 import { Briefcase, Building2, LayoutDashboard, MessageSquare, Tag, Users } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -68,6 +68,7 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const { user, isLoaded } = useUser()
+  const { openUserProfile } = useClerk()
   const pathname = usePathname()
   const router = useRouter()
 
@@ -107,7 +108,9 @@ export default function AdminLayout({
                 <SidebarMenu>
                   {menuItems.map((item) => {
                     const Icon = item.icon
-                    const isActive = pathname === item.url
+                    const isActive =
+                      pathname === item.url ||
+                      (pathname.startsWith(`${item.url}/`) && item.url !== "/admin")
                     return (
                       <SidebarMenuItem key={item.url}>
                         <SidebarMenuButton asChild isActive={isActive}>
@@ -149,6 +152,13 @@ export default function AdminLayout({
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={() => openUserProfile()}
+                  className="cursor-pointer"
+                >
+                  Mi Perfil
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <SignOutButton>
