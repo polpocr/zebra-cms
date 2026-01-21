@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import Link from "next/link"
 
 export function CentroAmericaSection() {
   return (
@@ -17,11 +17,11 @@ export function CentroAmericaSection() {
             />
           </div>
           <div className="flex flex-col gap-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Somos regionales
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Somos regionales</h2>
             <p className="text-lg text-foreground/80 leading-relaxed">
-              Zebra nació en Costa Rica, pero nuestra manada es internacional. Nos movemos con agilidad por Centroamérica y el Caribe, con aliados estratégicos y equipos en cada país para llevar tus ideas más allá.
+              Zebra nació en Costa Rica, pero nuestra manada es internacional. Nos movemos con
+              agilidad por Centroamérica y el Caribe, con aliados estratégicos y equipos en cada
+              país para llevar tus ideas más allá.
             </p>
             <Link href="/contacto">
               <Button size="lg" className="w-fit">
@@ -32,5 +32,5 @@ export function CentroAmericaSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }

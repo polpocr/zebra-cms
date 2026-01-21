@@ -1,11 +1,11 @@
-"use client";
+"use client"
 
-import { motion } from "motion/react";
+import { motion } from "motion/react"
 
 interface MarqueeProps {
-  text: string;
-  duration?: number;
-  className?: string;
+  text: string
+  duration?: number
+  className?: string
 }
 
 export function Marquee({ text, duration = 12, className = "" }: MarqueeProps) {
@@ -25,13 +25,9 @@ export function Marquee({ text, duration = 12, className = "" }: MarqueeProps) {
           },
         }}
       >
-        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">
-          {text}
-        </span>
-        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">
-          {text}
-        </span>
+        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">{text}</span>
+        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">{text}</span>
       </motion.div>
     </div>
-  );
+  )
 }

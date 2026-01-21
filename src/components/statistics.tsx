@@ -27,5 +27,5 @@ export function Statistics() {
         </div>
       </div>
     </section>
-  );
+  )
 }

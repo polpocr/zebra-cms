@@ -1,5 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from "next/image"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -8,12 +8,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           {/* Logo Column */}
           <div className="flex flex-col gap-4">
-            <Image
-              src="/footer/logo_footer.svg"
-              alt="Zebra"
-              width={160}
-              height={100}
-            />
+            <Image src="/footer/logo_footer.svg" alt="Zebra" width={160} height={100} />
           </div>
 
           {/* Servicio al cliente Column */}
@@ -23,7 +18,10 @@ export function Footer() {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
             <div className="flex flex-col gap-2 text-sm">
-              <a href="mailto:manada@zebracr.com" className="text-white hover:text-white/80 underline">
+              <a
+                href="mailto:manada@zebracr.com"
+                className="text-white hover:text-white/80 underline"
+              >
                 manada@zebracr.com
               </a>
               <a href="tel:+506XXXXXXXX" className="text-white hover:text-white/80">
@@ -90,5 +88,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

@@ -8,7 +8,12 @@
  * @module
  */
 
-import type * as tasks from "../tasks.js";
+import type * as categories from "../categories.js";
+import type * as clients from "../clients.js";
+import type * as files from "../files.js";
+import type * as leads from "../leads.js";
+import type * as services from "../services.js";
+import type * as team from "../team.js";
 
 import type {
   ApiFromModules,
@@ -17,7 +22,12 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  tasks: typeof tasks;
+  categories: typeof categories;
+  clients: typeof clients;
+  files: typeof files;
+  leads: typeof leads;
+  services: typeof services;
+  team: typeof team;
 }>;
 
 /**

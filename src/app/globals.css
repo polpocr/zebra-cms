@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  --background: oklch(1.0000 0 0);
+  --background: oklch(1.0 0 0);
   --foreground: oklch(0 0 0);
-  --card: oklch(1.0000 0 0);
+  --card: oklch(1.0 0 0);
   --card-foreground: oklch(0 0 0);
-  --popover: oklch(1.0000 0 0);
+  --popover: oklch(1.0 0 0);
   --popover-foreground: oklch(0 0 0);
   --primary: oklch(0.471 0.232 276.2);
-  --primary-foreground: oklch(1.0000 0 0);
+  --primary-foreground: oklch(1.0 0 0);
   --secondary: oklch(0.9551 0 0);
   --secondary-foreground: oklch(0.4091 0 0);
   --muted: oklch(0.9702 0 0);
   --muted-foreground: oklch(0.5693 0 0);
-  --accent: oklch(0.9370 0 0);
-  --accent-foreground: oklch(0.2520 0 0);
+  --accent: oklch(0.937 0 0);
+  --accent-foreground: oklch(0.252 0 0);
   --destructive: oklch(0.5877 0.2155 24.3359);
-  --destructive-foreground: oklch(1.0000 0 0);
+  --destructive-foreground: oklch(1.0 0 0);
   --border: oklch(0.9067 0 0);
   --input: oklch(0.9791 0 0);
   --ring: oklch(0.471 0.232 276.2);
@@ -28,14 +30,14 @@
   --sidebar: oklch(0.9791 0 0);
   --sidebar-foreground: oklch(0.3211 0 0);
   --sidebar-primary: oklch(0.471 0.232 276.2);
-  --sidebar-primary-foreground: oklch(1.0000 0 0);
-  --sidebar-accent: oklch(0.9370 0 0);
-  --sidebar-accent-foreground: oklch(0.2520 0 0);
+  --sidebar-primary-foreground: oklch(1.0 0 0);
+  --sidebar-accent: oklch(0.937 0 0);
+  --sidebar-accent-foreground: oklch(0.252 0 0);
   --sidebar-border: oklch(0.9067 0 0);
   --sidebar-ring: oklch(0.471 0.232 276.2);
   --font-sans: Inter;
   --font-serif: Palatino, Georgia, serif;
-  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+  --font-mono: "Fira Code", "JetBrains Mono", monospace;
   --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 2px;
@@ -57,23 +59,23 @@
 
 .dark {
   --background: oklch(0 0 0);
-  --foreground: oklch(1.0000 0 0);
+  --foreground: oklch(1.0 0 0);
   --card: oklch(0 0 0);
-  --card-foreground: oklch(1.0000 0 0);
+  --card-foreground: oklch(1.0 0 0);
   --popover: oklch(0 0 0);
-  --popover-foreground: oklch(1.0000 0 0);
+  --popover-foreground: oklch(1.0 0 0);
   --primary: oklch(0.471 0.232 276.2);
-  --primary-foreground: oklch(1.0000 0 0);
+  --primary-foreground: oklch(1.0 0 0);
   --secondary: oklch(0.2264 0 0);
   --secondary-foreground: oklch(0.8452 0 0);
   --muted: oklch(0.1822 0 0);
-  --muted-foreground: oklch(0.7380 0 0);
+  --muted-foreground: oklch(0.738 0 0);
   --accent: oklch(0.2768 0 0);
   --accent-foreground: oklch(0.8975 0 0);
   --destructive: oklch(0.5877 0.2155 24.3359);
-  --destructive-foreground: oklch(1.0000 0 0);
+  --destructive-foreground: oklch(1.0 0 0);
   --border: oklch(0.3211 0 0);
-  --input: oklch(0.2090 0 0);
+  --input: oklch(0.209 0 0);
   --ring: oklch(0.471 0.232 276.2);
   --chart-1: oklch(0.471 0.232 276.2);
   --chart-2: oklch(0.7272 0.0996 293.0662);
@@ -83,14 +85,14 @@
   --sidebar: oklch(0.1448 0 0);
   --sidebar-foreground: oklch(0.8975 0 0);
   --sidebar-primary: oklch(0.471 0.232 276.2);
-  --sidebar-primary-foreground: oklch(1.0000 0 0);
+  --sidebar-primary-foreground: oklch(1.0 0 0);
   --sidebar-accent: oklch(0.2768 0 0);
   --sidebar-accent-foreground: oklch(0.8975 0 0);
   --sidebar-border: oklch(0.3211 0 0);
   --sidebar-ring: oklch(0.471 0.232 276.2);
   --font-sans: Inter;
   --font-serif: Palatino, Georgia, serif;
-  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+  --font-mono: "Fira Code", "JetBrains Mono", monospace;
   --radius: 0rem;
   --shadow-x: 0px;
   --shadow-y: 4px;
@@ -100,11 +102,11 @@
   --shadow-color: #000000;
   --shadow-2xs: 0px 4px 15px 0px hsl(0 0% 0% / 0.15);
   --shadow-xs: 0px 4px 15px 0px hsl(0 0% 0% / 0.15);
-  --shadow-sm: 0px 4px 15px 0px hsl(0 0% 0% / 0.30), 0px 1px 2px -1px hsl(0 0% 0% / 0.30);
-  --shadow: 0px 4px 15px 0px hsl(0 0% 0% / 0.30), 0px 1px 2px -1px hsl(0 0% 0% / 0.30);
-  --shadow-md: 0px 4px 15px 0px hsl(0 0% 0% / 0.30), 0px 2px 4px -1px hsl(0 0% 0% / 0.30);
-  --shadow-lg: 0px 4px 15px 0px hsl(0 0% 0% / 0.30), 0px 4px 6px -1px hsl(0 0% 0% / 0.30);
-  --shadow-xl: 0px 4px 15px 0px hsl(0 0% 0% / 0.30), 0px 8px 10px -1px hsl(0 0% 0% / 0.30);
+  --shadow-sm: 0px 4px 15px 0px hsl(0 0% 0% / 0.3), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow: 0px 4px 15px 0px hsl(0 0% 0% / 0.3), 0px 1px 2px -1px hsl(0 0% 0% / 0.3);
+  --shadow-md: 0px 4px 15px 0px hsl(0 0% 0% / 0.3), 0px 2px 4px -1px hsl(0 0% 0% / 0.3);
+  --shadow-lg: 0px 4px 15px 0px hsl(0 0% 0% / 0.3), 0px 4px 6px -1px hsl(0 0% 0% / 0.3);
+  --shadow-xl: 0px 4px 15px 0px hsl(0 0% 0% / 0.3), 0px 8px 10px -1px hsl(0 0% 0% / 0.3);
   --shadow-2xl: 0px 4px 15px 0px hsl(0 0% 0% / 0.75);
 }
 
@@ -179,4 +181,13 @@ body {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

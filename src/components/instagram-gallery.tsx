@@ -4,9 +4,9 @@ export function InstagramGallery() {
     { src: "/images/instagram/image 7.jpg", alt: "Zebra profile" },
     { src: "/images/instagram/image 8.jpg", alt: "Zebra portrait" },
     { src: "/images/instagram/image 9.jpg", alt: "Zebra character" },
-  ];
+  ]
 
-  const instagramUrl = "https://www.instagram.com/zebraproducciones.cr/";
+  const instagramUrl = "https://www.instagram.com/zebraproducciones.cr/"
 
   return (
     <section className="w-full overflow-hidden">
@@ -20,15 +20,11 @@ export function InstagramGallery() {
               rel="noopener noreferrer"
               className="w-full"
             >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-64 object-cover"
-              />
+              <img src={image.src} alt={image.alt} className="w-full h-64 object-cover" />
             </a>
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

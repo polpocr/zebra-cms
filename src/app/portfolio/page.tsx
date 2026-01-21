@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import ClientPortfolio from "@/components/client-portfolio";
+import ClientPortfolio from "@/components/client-portfolio"
+import Image from "next/image"
 
 export default function PortfolioPage() {
   return (
@@ -59,5 +59,5 @@ export default function PortfolioPage() {
 
       <ClientPortfolio />
     </>
-  );
+  )
 }

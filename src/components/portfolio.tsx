@@ -1,15 +1,15 @@
-"use client";
+"use client"
 
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "./ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "./ui/button"
 
 interface PortfolioItem {
-  id: string;
-  image: string;
-  title: string;
-  link: string;
+  id: string
+  image: string
+  title: string
+  link: string
 }
 
 const portfolioData: PortfolioItem[] = [
@@ -37,7 +37,7 @@ const portfolioData: PortfolioItem[] = [
     title: "Recepción Formal",
     link: "/portfolio/recepcion-formal",
   },
-];
+]
 
 export function Portfolio() {
   return (
@@ -81,5 +81,5 @@ export function Portfolio() {
         </div>
       </div>
     </section>
-  );
+  )
 }
