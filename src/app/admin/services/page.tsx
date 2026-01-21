@@ -28,9 +28,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
 import { useMutation, useQuery } from "convex/react"
-import { MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react"
+import { Briefcase, MoreHorizontal, Pencil, Plus, Trash2, ZoomIn } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -49,6 +50,8 @@ export default function ServicesPage() {
   const [editingService, setEditingService] = useState<Service | null>(null)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [serviceToDelete, setServiceToDelete] = useState<Id<"services"> | null>(null)
+  const [imageModalOpen, setImageModalOpen] = useState(false)
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string | null>(null)
 
   const services = useQuery(api.services.list)
   const deleteService = useMutation(api.services.remove)
@@ -82,16 +85,26 @@ export default function ServicesPage() {
       cell: ({ row }) => {
         const imageUrl = row.getValue("imageUrl") as string | undefined
         return imageUrl ? (
-          <div className="relative h-12 w-12">
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedImageUrl(imageUrl)
+              setImageModalOpen(true)
+            }}
+            className="group relative h-12 w-12 overflow-hidden rounded-lg transition-all"
+          >
             <Image
               src={imageUrl}
               alt={row.original.title}
               fill
-              className="rounded-md object-cover"
+              className="rounded-lg object-cover transition-transform group-hover:scale-110"
             />
-          </div>
+            <div className="absolute inset-0 flex items-center justify-center rounded-lg bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+              <ZoomIn className="h-5 w-5 text-white" />
+            </div>
+          </button>
         ) : (
-          <div className="h-12 w-12 rounded-md bg-muted" />
+          <div className="h-12 w-12 rounded-lg bg-muted" />
         )
       },
     },
@@ -145,19 +158,26 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Servicios</h1>
+        <div className="space-y-1">
+          <h1 className="text-4xl font-bold tracking-tight">Servicios</h1>
+          <p className="text-muted-foreground text-lg">
+            Gestiona los servicios ofrecidos por tu empresa
+          </p>
+        </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button onClick={() => setEditingService(null)}>
+            <Button onClick={() => setEditingService(null)} size="lg" className="shadow-sm">
               <Plus className="mr-2 h-4 w-4" />
               Agregar Servicio
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
-              <DialogTitle>{editingService ? "Editar Servicio" : "Nuevo Servicio"}</DialogTitle>
+              <DialogTitle className="text-2xl">
+                {editingService ? "Editar Servicio" : "Nuevo Servicio"}
+              </DialogTitle>
             </DialogHeader>
             <ServiceForm initialData={editingService || undefined} onSuccess={handleDialogClose} />
           </DialogContent>
@@ -165,10 +185,33 @@ export default function ServicesPage() {
       </div>
 
       {services === undefined ? (
-        <div className="text-center py-8 text-muted-foreground">Cargando...</div>
+        <div className="space-y-4">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
       ) : services.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground">
-          No hay servicios registrados. Agrega un servicio para comenzar.
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/30 py-16">
+          <div className="rounded-full bg-muted p-4 mb-4">
+            <Briefcase className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">No hay servicios registrados</h3>
+          <p className="text-muted-foreground text-center max-w-sm mb-6">
+            Comienza agregando tu primer servicio para mostrarlo en tu sitio web.
+          </p>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={() => setEditingService(null)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Agregar Primer Servicio
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px]">
+              <DialogHeader>
+                <DialogTitle className="text-2xl">Nuevo Servicio</DialogTitle>
+              </DialogHeader>
+              <ServiceForm onSuccess={handleDialogClose} />
+            </DialogContent>
+          </Dialog>
         </div>
       ) : (
         <DataTable columns={columns} data={services} />
@@ -188,6 +231,22 @@ export default function ServicesPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <Dialog open={imageModalOpen} onOpenChange={setImageModalOpen}>
+        <DialogContent className="max-w-4xl !p-0 !border-0 rounded-none">
+          <DialogTitle className="sr-only">Imagen ampliada</DialogTitle>
+          {selectedImageUrl && (
+            <div className="relative aspect-square w-full max-h-[80vh]">
+              <Image
+                src={selectedImageUrl}
+                alt="Imagen ampliada"
+                fill
+                className="object-contain"
+              />
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

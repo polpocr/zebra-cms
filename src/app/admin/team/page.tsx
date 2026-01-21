@@ -28,9 +28,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
 import { useMutation, useQuery } from "convex/react"
-import { MoreHorizontal, Pencil, Plus, Trash2, ZoomIn } from "lucide-react"
+import { MoreHorizontal, Pencil, Plus, Trash2, Users, ZoomIn } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import { toast } from "sonner"
@@ -149,19 +150,26 @@ export default function TeamPage() {
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Equipo</h1>
+        <div className="space-y-1">
+          <h1 className="text-4xl font-bold tracking-tight">Equipo</h1>
+          <p className="text-muted-foreground text-lg">
+            Gestiona los integrantes de tu equipo
+          </p>
+        </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button onClick={() => setEditingMember(null)}>
+            <Button onClick={() => setEditingMember(null)} size="lg" className="shadow-sm">
               <Plus className="mr-2 h-4 w-4" />
               Agregar Integrante
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
-              <DialogTitle>{editingMember ? "Editar Integrante" : "Nuevo Integrante"}</DialogTitle>
+              <DialogTitle className="text-2xl">
+                {editingMember ? "Editar Integrante" : "Nuevo Integrante"}
+              </DialogTitle>
             </DialogHeader>
             <TeamForm initialData={editingMember || undefined} onSuccess={handleDialogClose} />
           </DialogContent>
@@ -169,10 +177,33 @@ export default function TeamPage() {
       </div>
 
       {members === undefined ? (
-        <div className="text-center py-8 text-muted-foreground">Cargando...</div>
+        <div className="space-y-4">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
       ) : members.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground">
-          No hay integrantes registrados. Agrega un integrante para comenzar.
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/30 py-16">
+          <div className="rounded-full bg-muted p-4 mb-4">
+            <Users className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">No hay integrantes registrados</h3>
+          <p className="text-muted-foreground text-center max-w-sm mb-6">
+            Comienza agregando los integrantes de tu equipo para mostrarlos en tu sitio web.
+          </p>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={() => setEditingMember(null)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Agregar Primer Integrante
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px]">
+              <DialogHeader>
+                <DialogTitle className="text-2xl">Nuevo Integrante</DialogTitle>
+              </DialogHeader>
+              <TeamForm onSuccess={handleDialogClose} />
+            </DialogContent>
+          </Dialog>
         </div>
       ) : (
         <DataTable columns={columns} data={members} />

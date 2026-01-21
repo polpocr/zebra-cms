@@ -1,6 +1,8 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Skeleton } from "@/components/ui/skeleton"
 import { ConvexClientProvider } from "@/providers/convex-client-provider"
 import { api } from "convex/_generated/api"
 import { useQuery } from "convex/react"
@@ -59,39 +61,60 @@ function DashboardContent() {
     },
   ]
 
+  const isLoading = teamCount === undefined || servicesCount === undefined || clientsCount === undefined || categoriesCount === undefined || leadsCount === undefined
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <p className="text-muted-foreground mt-2">Resumen general del sistema</p>
+    <div className="space-y-8">
+      <div className="space-y-2">
+        <h1 className="text-4xl font-bold tracking-tight">Dashboard</h1>
+        <p className="text-muted-foreground text-lg">Resumen general del sistema</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {kpis.map((kpi) => {
-          const Icon = kpi.icon
-          return (
-            <Link key={kpi.title} href={kpi.href}>
-              <Card className="hover:shadow-md transition-shadow cursor-pointer">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
-                  <div className={`${kpi.bgColor} ${kpi.color} p-2 rounded-lg`}>
-                    <Icon className="h-5 w-5" />
-                  </div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {isLoading
+          ? Array.from({ length: 5 }).map((_, i) => (
+              <Card key={i} className="border-2">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                  <Skeleton className="h-5 w-24" />
+                  <Skeleton className="h-10 w-10 rounded-lg" />
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-baseline justify-between">
-                    <div className="text-3xl font-bold">{kpi.value}</div>
-                    {kpi.badge !== undefined && (
-                      <div className="text-sm text-muted-foreground">
-                        {kpi.badge} sin leer
-                      </div>
-                    )}
-                  </div>
+                  <Skeleton className="h-9 w-16" />
                 </CardContent>
               </Card>
-            </Link>
-          )
-        })}
+            ))
+          : kpis.map((kpi) => {
+              const Icon = kpi.icon
+              return (
+                <Link key={kpi.title} href={kpi.href} className="group">
+                  <Card className="relative overflow-hidden border-2 transition-all duration-300 hover:shadow-lg hover:border-primary/20 hover:-translate-y-1">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                      <CardTitle className="text-sm font-semibold text-muted-foreground">
+                        {kpi.title}
+                      </CardTitle>
+                      <div
+                        className={`${kpi.bgColor} ${kpi.color} p-3 rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                      >
+                        <Icon className="h-5 w-5" />
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-baseline justify-between">
+                        <div className="text-4xl font-bold tracking-tight">{kpi.value}</div>
+                        {kpi.badge !== undefined && (
+                          <Badge
+                            variant="default"
+                            className="bg-primary text-primary-foreground font-semibold shadow-sm"
+                          >
+                            {kpi.badge} nuevo{kpi.badge > 1 ? "s" : ""}
+                          </Badge>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )
+            })}
       </div>
     </div>
   )

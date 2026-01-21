@@ -1,6 +1,7 @@
 "use client"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Breadcrumbs } from "@/components/ui/breadcrumb"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +22,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { SignOutButton, useClerk, useUser } from "@clerk/nextjs"
 import { Briefcase, Building2, LayoutDashboard, MessageSquare, Tag, Users } from "lucide-react"
@@ -89,8 +91,8 @@ export default function AdminLayout({
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <Sidebar>
-          <SidebarHeader>
-            <Link href="/admin" className="flex items-center justify-center p-4">
+          <SidebarHeader className="border-b">
+            <Link href="/admin" className="flex items-center justify-center p-6 transition-opacity hover:opacity-80">
               <Image
                 src="/logo.svg"
                 alt="Logo"
@@ -103,7 +105,9 @@ export default function AdminLayout({
           </SidebarHeader>
           <SidebarContent>
             <SidebarGroup>
-              <SidebarGroupLabel>Admin Panel</SidebarGroupLabel>
+              <SidebarGroupLabel className="px-3 text-xs font-semibold uppercase tracking-wider text-sidebar-foreground/60">
+                Admin Panel
+              </SidebarGroupLabel>
               <SidebarGroupContent>
                 <SidebarMenu>
                   {menuItems.map((item) => {
@@ -113,7 +117,7 @@ export default function AdminLayout({
                       (pathname.startsWith(`${item.url}/`) && item.url !== "/admin")
                     return (
                       <SidebarMenuItem key={item.url}>
-                        <SidebarMenuButton asChild isActive={isActive}>
+                        <SidebarMenuButton asChild isActive={isActive} className="transition-all duration-200">
                           <Link href={item.url}>
                             <Icon className="size-4" />
                             <span>{item.title}</span>
@@ -128,34 +132,35 @@ export default function AdminLayout({
           </SidebarContent>
         </Sidebar>
         <div className="flex flex-1 flex-col">
-          <header className="flex h-16 items-center justify-between border-b px-6">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 shadow-sm">
             <div className="flex items-center gap-4">
-              <h1 className="text-lg font-semibold">Panel de Administración</h1>
+              <SidebarTrigger className="md:hidden" />
+              <Breadcrumbs />
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="flex items-center gap-2 rounded-md p-2 hover:bg-accent"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
-                  <Avatar>
+                  <Avatar className="h-8 w-8">
                     <AvatarImage src={user.imageUrl} alt={user.fullName || ""} />
-                    <AvatarFallback>
+                    <AvatarFallback className="text-xs">
                       {user.firstName?.[0] || ""}
                       {user.lastName?.[0] || ""}
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden md:block">
+                  <span className="hidden md:block text-sm font-medium">
                     {user.fullName || user.emailAddresses[0]?.emailAddress}
                   </span>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel>Mi Cuenta</DropdownMenuLabel>
+                <DropdownMenuLabel className="font-semibold">Mi Cuenta</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={() => openUserProfile()}
-                  className="cursor-pointer"
+                  className="cursor-pointer transition-colors"
                 >
                   Mi Perfil
                 </DropdownMenuItem>
@@ -170,7 +175,7 @@ export default function AdminLayout({
               </DropdownMenuContent>
             </DropdownMenu>
           </header>
-          <main className="flex-1 overflow-auto p-6">{children}</main>
+          <main className="flex-1 overflow-auto bg-muted/30 p-6">{children}</main>
         </div>
       </div>
     </SidebarProvider>

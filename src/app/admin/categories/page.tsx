@@ -29,9 +29,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
 import { useMutation, useQuery } from "convex/react"
-import { MoreHorizontal, Pencil, Plus, Trash2 } from "lucide-react"
+import { MoreHorizontal, Pencil, Plus, Tag, Trash2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -126,19 +127,26 @@ export default function CategoriesPage() {
   ]
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Categorías</h1>
+        <div className="space-y-1">
+          <h1 className="text-4xl font-bold tracking-tight">Categorías</h1>
+          <p className="text-muted-foreground text-lg">
+            Organiza tus clientes por categorías
+          </p>
+        </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
-            <Button onClick={() => setEditingCategory(null)}>
+            <Button onClick={() => setEditingCategory(null)} size="lg" className="shadow-sm">
               <Plus className="mr-2 h-4 w-4" />
               Agregar Categoría
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
-              <DialogTitle>{editingCategory ? "Editar Categoría" : "Nueva Categoría"}</DialogTitle>
+              <DialogTitle className="text-2xl">
+                {editingCategory ? "Editar Categoría" : "Nueva Categoría"}
+              </DialogTitle>
             </DialogHeader>
             <CategoryForm
               initialData={editingCategory || undefined}
@@ -149,10 +157,33 @@ export default function CategoriesPage() {
       </div>
 
       {categories === undefined ? (
-        <div className="text-center py-8 text-muted-foreground">Cargando...</div>
+        <div className="space-y-4">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
       ) : categories.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground">
-          No hay categorías registradas. Agrega una categoría para comenzar.
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/30 py-16">
+          <div className="rounded-full bg-muted p-4 mb-4">
+            <Tag className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">No hay categorías registradas</h3>
+          <p className="text-muted-foreground text-center max-w-sm mb-6">
+            Crea categorías para organizar y filtrar tus clientes.
+          </p>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={() => setEditingCategory(null)}>
+                <Plus className="mr-2 h-4 w-4" />
+                Agregar Primera Categoría
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[600px]">
+              <DialogHeader>
+                <DialogTitle className="text-2xl">Nueva Categoría</DialogTitle>
+              </DialogHeader>
+              <CategoryForm onSuccess={handleDialogClose} />
+            </DialogContent>
+          </Dialog>
         </div>
       ) : (
         <DataTable columns={columns} data={categories} />

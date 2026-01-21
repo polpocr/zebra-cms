@@ -28,9 +28,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
 import { useMutation, useQuery } from "convex/react"
-import { Eye, Mail, MoreHorizontal, Phone, Trash2 } from "lucide-react"
+import { Eye, Mail, MessageSquare, MoreHorizontal, Phone, Trash2 } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -146,25 +147,37 @@ export default function LeadsPage() {
   ]
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Leads de Contacto</h1>
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-4xl font-bold tracking-tight">Leads de Contacto</h1>
+        <p className="text-muted-foreground text-lg">
+          Gestiona los mensajes y consultas recibidas
+        </p>
       </div>
 
       {leads === undefined ? (
-        <div className="text-center py-8 text-muted-foreground">Cargando...</div>
+        <div className="space-y-4">
+          <Skeleton className="h-12 w-full" />
+          <Skeleton className="h-64 w-full" />
+        </div>
       ) : leads.length === 0 ? (
-        <div className="text-center py-8 text-muted-foreground">
-          No hay leads de contacto registrados.
+        <div className="flex flex-col items-center justify-center rounded-lg border-2 border-dashed bg-muted/30 py-16">
+          <div className="rounded-full bg-muted p-4 mb-4">
+            <MessageSquare className="h-8 w-8 text-muted-foreground" />
+          </div>
+          <h3 className="text-lg font-semibold mb-2">No hay leads registrados</h3>
+          <p className="text-muted-foreground text-center max-w-sm">
+            Los mensajes del formulario de contacto aparecerán aquí.
+          </p>
         </div>
       ) : (
         <DataTable columns={columns} data={leads} />
       )}
 
       <Dialog open={viewDialogOpen} onOpenChange={setViewDialogOpen}>
-        <DialogContent>
+        <DialogContent className="sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Detalles del Lead</DialogTitle>
+            <DialogTitle className="text-2xl">Detalles del Lead</DialogTitle>
           </DialogHeader>
           {selectedLead && (
             <div className="space-y-4">
