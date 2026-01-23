@@ -85,15 +85,15 @@ export default function AcercaDePage() {
         </div>
 
         {/* White content section */}
-        <div className="w-full px-4 md:px-8 mt-8 md:mt-12">
-          <div className="max-w-5xl ml-auto mr-auto">
+        <div className="w-full px-4 md:px-8 mt-12 md:mt-16 lg:mt-20">
+          <div className="max-w-6xl ml-auto mr-auto">
             <div className="flex justify-end">
               <div className="max-w-2xl">
-                <p className="text-base md:text-lg text-foreground/80 mb-4 md:mb-6 leading-relaxed">
+                <p className="text-base md:text-lg lg:text-xl text-foreground/80 mb-6 md:mb-8 leading-relaxed">
                   Somos tu equipo extendido, listos para construir estrategias, diseñar experiencias y
                   materializar ideas que eleven tu marca.
                 </p>
-                <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
                   Con más de 3000 proyectos completados en 8 años, sabemos que la clave del éxito está
                   en la mezcla de creatividad, ejecución impecable y la actitud para ir más allá.
                 </p>

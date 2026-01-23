@@ -118,27 +118,30 @@ export default function RootLayout({
           <link rel="icon" href="/favicon.ico" />
           <meta name="theme-color" content="#7660A0" />
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-          />
         </head>
-        <body className={`${interSans.variable} ${interSans.variable} antialiased`}>
+        <body className={`${interSans.variable} antialiased`} suppressHydrationWarning>
+          {/* JSON-LD Structured Data */}
           <Script
-            id="disable-service-worker"
+            id="organization-schema"
+            type="application/ld+json"
             strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-                if ('serviceWorker' in navigator) {
-                  navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                    for(let registration of registrations) {
-                      registration.unregister();
-                    }
-                  });
-                }
-              `,
-            }}
-          />
+          >
+            {JSON.stringify(organizationSchema)}
+          </Script>
+
+          {/* Disable Service Worker */}
+          <Script id="disable-service-worker" strategy="beforeInteractive">
+            {`
+              if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                  for(let registration of registrations) {
+                    registration.unregister();
+                  }
+                });
+              }
+            `}
+          </Script>
+
           <ConvexClientProvider>
             <SiteLayout>{children}</SiteLayout>
             <Toaster />

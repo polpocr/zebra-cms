@@ -26,8 +26,8 @@ export function ServicesSection() {
   }
 
   return (
-    <div className="container mx-auto px-4 md:px-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+    <div className="container mx-auto px-4 md:px-6 lg:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
         {services.map((service) => (
           <div
             key={service._id}
@@ -47,11 +47,11 @@ export function ServicesSection() {
               )}
               <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <div className="bg-linear-to-b from-gray-50 to-white px-4 md:px-6 py-4 md:py-6 lg:py-8 flex flex-col flex-1 border-t border-gray-100/50">
-              <h3 className="text-lg md:text-xl font-bold uppercase text-center mb-2 md:mb-3 tracking-tight text-black group-hover:text-primary transition-colors duration-300">
+            <div className="bg-linear-to-b from-gray-50 to-white px-5 md:px-6 py-6 md:py-7 lg:py-8 flex flex-col flex-1 border-t border-gray-100/50">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-bold uppercase text-center mb-3 md:mb-4 tracking-tight text-black group-hover:text-primary transition-colors duration-300">
                 {service.title}
               </h3>
-              <p className="text-xs md:text-sm text-foreground/70 text-center leading-relaxed">
+              <p className="text-sm md:text-base text-foreground/70 text-center leading-relaxed">
                 {service.description}
               </p>
             </div>

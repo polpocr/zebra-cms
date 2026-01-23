@@ -52,9 +52,9 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/50" />
       </section>
 
-      <section className="container mx-auto px-4 py-8 md:py-16 mt-8 md:mt-16 flex flex-col gap-6 md:gap-8">
+      <section className="container mx-auto px-4 py-12 md:py-20 lg:py-24 mt-12 md:mt-16 lg:mt-20 flex flex-col gap-8 md:gap-12">
         <Marquee text={"*PLANTEAMIENTO * ESTRATEGIA * EJECUCIÓN * RESULTADOS *"} />
-        <p className="text-base md:text-lg text-foreground/80 text-center px-4">
+        <p className="text-base md:text-lg lg:text-xl text-foreground/80 text-center px-4 md:px-8 leading-relaxed max-w-4xl mx-auto">
           Zebra Producciones somos una agencia de marketing que nos integramos a tu equipo para
           crear soluciones efectivas, creativas y llenas de impacto. Construimos tus ideas,
           celebramos tus logros y solucionamos juntos los retos. No somos solo proveedores: somos
