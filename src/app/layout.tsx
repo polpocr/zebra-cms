@@ -13,9 +13,63 @@ const interSans = Inter({
   subsets: ["latin"],
 })
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
 export const metadata: Metadata = {
-  title: "Zebra CMS",
-  description: "Zebra CMS",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Zebra Producciones - Agencia de Marketing y Publicidad",
+    template: "%s | Zebra Producciones",
+  },
+  description:
+    "Agencia de marketing que se integra a tu equipo para crear soluciones efectivas, creativas y llenas de impacto. Más de 3000 proyectos completados.",
+  keywords: [
+    "agencia de marketing",
+    "publicidad",
+    "marketing digital",
+    "diseño gráfico",
+    "branding",
+    "estrategia de marketing",
+    "Zebra Producciones",
+  ],
+  authors: [{ name: "Zebra Producciones" }],
+  creator: "Zebra Producciones",
+  publisher: "Zebra Producciones",
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: baseUrl,
+    siteName: "Zebra Producciones",
+    title: "Zebra Producciones - Agencia de Marketing y Publicidad",
+    description:
+      "Agencia de marketing que se integra a tu equipo para crear soluciones efectivas, creativas y llenas de impacto. Más de 3000 proyectos completados.",
+    images: [
+      {
+        url: "/images/hero-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Zebra Producciones",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zebra Producciones - Agencia de Marketing y Publicidad",
+    description:
+      "Agencia de marketing que se integra a tu equipo para crear soluciones efectivas, creativas y llenas de impacto.",
+    images: ["/images/hero-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 }
 
 export default function RootLayout({

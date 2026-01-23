@@ -1,7 +1,37 @@
+import type { Metadata } from "next"
 import { ServicesSection } from "@/components/services-section"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
+export const metadata: Metadata = {
+  title: "Nuestros Servicios",
+  description:
+    "Soluciones integrales que transforman ideas en experiencias memorables. Descubre lo que podemos hacer por tu marca.",
+  openGraph: {
+    title: "Nuestros Servicios - Zebra Producciones",
+    description:
+      "Soluciones integrales que transforman ideas en experiencias memorables. Descubre lo que podemos hacer por tu marca.",
+    url: `${baseUrl}/servicios`,
+    images: [
+      {
+        url: `${baseUrl}/images/service_image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Nuestros Servicios - Zebra Producciones",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nuestros Servicios - Zebra Producciones",
+    description:
+      "Soluciones integrales que transforman ideas en experiencias memorables. Descubre lo que podemos hacer por tu marca.",
+    images: [`${baseUrl}/images/service_image.jpg`],
+  },
+}
 
 export default function ServiciosPage() {
   return (

@@ -1,6 +1,36 @@
+import type { Metadata } from "next"
 import TeamSection from "@/components/team-section"
 import ValoresSection from "@/components/valores-section"
 import Image from "next/image"
+
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+
+export const metadata: Metadata = {
+  title: "Acerca de Nosotros",
+  description:
+    "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+  openGraph: {
+    title: "Acerca de Nosotros - Zebra Producciones",
+    description:
+      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+    url: `${baseUrl}/acerca-de`,
+    images: [
+      {
+        url: `${baseUrl}/images/about_image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Acerca de Zebra Producciones",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Acerca de Nosotros - Zebra Producciones",
+    description:
+      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+    images: [`${baseUrl}/images/about_image.jpg`],
+  },
+}
 
 export default function AcercaDePage() {
   return (
