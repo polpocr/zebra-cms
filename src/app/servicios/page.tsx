@@ -54,7 +54,7 @@ export default function ServiciosPage() {
           <div className="absolute inset-0 bg-black/70 md:bg-black/0" />
           {/* Header text - overlaid on image */}
           {/* Mobile: Horizontal centered */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 lg:hidden">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 xl:hidden">
             <h1 className="text-4xl font-bold leading-none tracking-tight text-white text-center">
               NUESTROS
             </h1>
@@ -62,8 +62,8 @@ export default function ServiciosPage() {
               SERVICIOS
             </h2>
           </div>
-          {/* Desktop: Vertical, left side - visible only on LG */}
-          <div className="hidden lg:flex absolute top-[20vh] left-4 md:left-8 lg:left-[10vw] h-full items-end gap-1 md:gap-2">
+          {/* Desktop: Vertical, left side - visible only on XL */}
+          <div className="hidden xl:flex absolute top-[20vh] left-4 md:left-8 lg:left-[10vw] h-full items-end gap-1 md:gap-2">
             <h1
               className="text-[32px] md:text-[42px] lg:text-[96px] font-bold leading-none [writing-mode:vertical-lr] rotate-180 tracking-tight text-white z-50 whitespace-nowrap"
               style={{
@@ -86,30 +86,28 @@ export default function ServiciosPage() {
         </div>
 
         {/* White content section */}
-        <div className="w-full px-4 md:px-8 mt-8 md:mt-12">
-          <div className="max-w-5xl ml-auto mr-auto">
-            <div className="flex justify-end mb-8 md:mb-12">
-              <div className="max-w-2xl">
-                <p className="text-base md:text-lg text-foreground/80 mb-4 md:mb-6 leading-relaxed">
-                  En Zebra desarrollamos soluciones integrales que transforman ideas en experiencias
-                  memorables.
-                </p>
-                <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-                  Mirá lo que podemos hacer por vos y tu marca:
-                </p>
-              </div>
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-8 md:mt-12">
+          <div className="flex justify-end mb-8 md:mb-12">
+            <div className="max-w-2xl">
+              <p className="text-base md:text-lg text-foreground/80 mb-4 md:mb-6 leading-relaxed">
+                En Zebra desarrollamos soluciones integrales que transforman ideas en experiencias
+                memorables.
+              </p>
+              <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                Mirá lo que podemos hacer por vos y tu marca:
+              </p>
             </div>
+          </div>
 
-            <ServicesSection />
+          <ServicesSection />
 
-            <div className="flex justify-center my-12">
-              <Button
-                asChild
-                className="bg-[#A28CBD] hover:bg-[#A28CBD]/90 text-white uppercase px-8 py-6 text-base font-medium"
-              >
-                <Link href="/portfolio">VER MÁS PROYECTOS</Link>
-              </Button>
-            </div>
+          <div className="flex justify-center my-12">
+            <Button
+              asChild
+              className="bg-[#A28CBD] hover:bg-[#A28CBD]/90 text-white uppercase px-8 py-6 text-base font-medium"
+            >
+              <Link href="/portfolio">VER MÁS PROYECTOS</Link>
+            </Button>
           </div>
         </div>
       </section>
