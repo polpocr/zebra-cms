@@ -159,6 +159,17 @@ AWS_REGION=us-east-1
 S3_BUCKET_NAME=zebra-cms-uploads
 ```
 
+### En `.env.local` (Next.js – necesario para optimización de imágenes):
+
+La ruta `/api/upload-image` usa Sharp y sube a S3 desde Next.js. Necesitas las mismas variables en `.env.local` (o en Vercel):
+
+```env
+AWS_ACCESS_KEY_ID=tu-access-key-id
+AWS_SECRET_ACCESS_KEY=tu-secret-access-key
+AWS_REGION=us-east-1
+S3_BUCKET_NAME=zebra-cms-uploads
+```
+
 ### En `.env.local` (opcional, solo si necesitas las URLs públicas en el cliente):
 
 ```env

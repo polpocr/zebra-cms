@@ -1,7 +1,5 @@
 "use client"
 
-import { api } from "convex/_generated/api"
-import type { Id } from "convex/_generated/dataModel"
 import { DataTable } from "@/components/admin/data-table"
 import {
   AlertDialog,
@@ -30,6 +28,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
+import { api } from "convex/_generated/api"
+import type { Id } from "convex/_generated/dataModel"
 import { useMutation, useQuery } from "convex/react"
 import { Eye, Mail, MessageSquare, MoreHorizontal, Phone, Trash2 } from "lucide-react"
 import { useState } from "react"
@@ -150,9 +150,7 @@ export default function LeadsPage() {
     <div className="space-y-6">
       <div className="space-y-1">
         <h1 className="text-4xl font-bold tracking-tight">Leads de Contacto</h1>
-        <p className="text-muted-foreground text-lg">
-          Gestiona los mensajes y consultas recibidas
-        </p>
+        <p className="text-muted-foreground text-lg">Gestiona los mensajes y consultas recibidas</p>
       </div>
 
       {leads === undefined ? (

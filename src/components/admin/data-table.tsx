@@ -21,7 +21,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Inbox, Search, X } from "lucide-react"
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  Inbox,
+  Search,
+  X,
+} from "lucide-react"
 import * as React from "react"
 
 interface DataTableProps<TData, TValue> {

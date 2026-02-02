@@ -19,7 +19,9 @@ export function Footer() {
 
           {/* Servicio al cliente Column */}
           <div className="flex flex-col gap-4 text-left items-center md:items-start">
-            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">Servicio al cliente:</h3>
+            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">
+              Servicio al cliente:
+            </h3>
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-xs">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </p>
@@ -30,8 +32,8 @@ export function Footer() {
               >
                 manada@zebracr.com
               </a>
-              <a 
-                href="tel:+506XXXXXXXX" 
+              <a
+                href="tel:+506XXXXXXXX"
                 className="text-white/90 hover:text-white transition-colors duration-200"
               >
                 (506) XXX-XXXX
@@ -41,28 +43,30 @@ export function Footer() {
 
           {/* Explore Column */}
           <div className="flex flex-col gap-4 text-left items-center md:items-start">
-            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">Explore:</h3>
+            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">
+              Explore:
+            </h3>
             <nav className="flex flex-col gap-3">
-              <Link 
-                href="/acerca-de" 
+              <Link
+                href="/acerca-de"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
                 About
               </Link>
-              <Link 
-                href="/servicios" 
+              <Link
+                href="/servicios"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
                 Service
               </Link>
-              <Link 
-                href="/portfolio" 
+              <Link
+                href="/portfolio"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
                 Portfolio
               </Link>
-              <Link 
-                href="/contacto" 
+              <Link
+                href="/contacto"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
                 Contact
@@ -72,7 +76,9 @@ export function Footer() {
 
           {/* Social Media Column */}
           <div className="flex flex-col gap-4 items-center md:items-end text-left md:text-right w-full md:w-auto">
-            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">Social Media:</h3>
+            <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">
+              Social Media:
+            </h3>
             <div className="flex gap-4 justify-start md:justify-end">
               <a
                 href="https://facebook.com"

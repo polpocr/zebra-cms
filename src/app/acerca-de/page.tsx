@@ -1,8 +1,8 @@
-import type { Metadata } from "next"
+import { StructuredData } from "@/components/structured-data"
 import TeamSection from "@/components/team-section"
 import ValoresSection from "@/components/valores-section"
+import type { Metadata } from "next"
 import Image from "next/image"
-import { StructuredData } from "@/components/structured-data"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
@@ -90,12 +90,13 @@ export default function AcercaDePage() {
             <div className="flex justify-end">
               <div className="max-w-2xl">
                 <p className="text-base md:text-lg lg:text-xl text-foreground/80 mb-6 md:mb-8 leading-relaxed">
-                  Somos tu equipo extendido, listos para construir estrategias, diseñar experiencias y
-                  materializar ideas que eleven tu marca.
+                  Somos tu equipo extendido, listos para construir estrategias, diseñar experiencias
+                  y materializar ideas que eleven tu marca.
                 </p>
                 <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                  Con más de 3000 proyectos completados en 8 años, sabemos que la clave del éxito está
-                  en la mezcla de creatividad, ejecución impecable y la actitud para ir más allá.
+                  Con más de 3000 proyectos completados en 8 años, sabemos que la clave del éxito
+                  está en la mezcla de creatividad, ejecución impecable y la actitud para ir más
+                  allá.
                 </p>
               </div>
             </div>

@@ -69,7 +69,9 @@ export function BrandsSection() {
                   </div>
                 )}
               </div>
-              <div className="text-base md:text-lg font-semibold text-foreground mb-1">{brand.name}</div>
+              <div className="text-base md:text-lg font-semibold text-foreground mb-1">
+                {brand.name}
+              </div>
               <div className="text-xs md:text-sm text-foreground/70">{brand.tagline}</div>
             </div>
           ))}

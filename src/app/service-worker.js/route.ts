@@ -2,7 +2,7 @@ export async function GET() {
   return new Response(null, {
     status: 204,
     headers: {
-      'Content-Type': 'application/javascript',
+      "Content-Type": "application/javascript",
     },
   })
 }

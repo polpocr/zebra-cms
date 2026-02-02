@@ -25,8 +25,12 @@ export function Marquee({ text, duration = 12, className = "" }: MarqueeProps) {
           },
         }}
       >
-        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8">{text}</span>
-        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8">{text}</span>
+        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8">
+          {text}
+        </span>
+        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8">
+          {text}
+        </span>
       </motion.div>
     </div>
   )

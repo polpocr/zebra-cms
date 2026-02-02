@@ -9,6 +9,7 @@ export function StructuredData({ data }: StructuredDataProps) {
     <Script
       id="structured-data"
       type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is sanitized via JSON.stringify
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   )

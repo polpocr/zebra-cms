@@ -1,7 +1,5 @@
 "use client"
 
-import { api } from "convex/_generated/api"
-import type { Id } from "convex/_generated/dataModel"
 import { BrandForm } from "@/components/admin/brand-form"
 import { DataTable } from "@/components/admin/data-table"
 import {
@@ -30,6 +28,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
+import { api } from "convex/_generated/api"
+import type { Id } from "convex/_generated/dataModel"
 import { useMutation, useQuery } from "convex/react"
 import { Award, MoreHorizontal, Pencil, Plus, Trash2, ZoomIn } from "lucide-react"
 import Image from "next/image"
@@ -178,7 +178,14 @@ export default function BrandsPage() {
         </div>
         <Dialog open={dialogOpen} onOpenChange={handleDialogClose}>
           <DialogTrigger asChild>
-            <Button onClick={() => { setEditingBrand(null); setDialogOpen(true); }} size="lg" className="shadow-sm">
+            <Button
+              onClick={() => {
+                setEditingBrand(null)
+                setDialogOpen(true)
+              }}
+              size="lg"
+              className="shadow-sm"
+            >
               <Plus className="mr-2 h-4 w-4" />
               Agregar Marca
             </Button>
@@ -189,7 +196,10 @@ export default function BrandsPage() {
                 {editingBrand ? "Editar Marca" : "Nueva Marca"}
               </DialogTitle>
             </DialogHeader>
-            <BrandForm initialData={editingBrand || undefined} onSuccess={() => handleDialogClose(false)} />
+            <BrandForm
+              initialData={editingBrand || undefined}
+              onSuccess={() => handleDialogClose(false)}
+            />
           </DialogContent>
         </Dialog>
       </div>
@@ -208,7 +218,12 @@ export default function BrandsPage() {
           <p className="text-muted-foreground text-center max-w-sm mb-6">
             Comienza agregando marcas para mostrarlas en tu página principal.
           </p>
-          <Button onClick={() => { setEditingBrand(null); setDialogOpen(true); }}>
+          <Button
+            onClick={() => {
+              setEditingBrand(null)
+              setDialogOpen(true)
+            }}
+          >
             <Plus className="mr-2 h-4 w-4" />
             Agregar Primera Marca
           </Button>
@@ -237,12 +252,7 @@ export default function BrandsPage() {
           <DialogTitle className="sr-only">Imagen ampliada</DialogTitle>
           {selectedImageUrl && (
             <div className="relative aspect-square w-full max-h-[80vh]">
-              <Image
-                src={selectedImageUrl}
-                alt="Imagen ampliada"
-                fill
-                className="object-contain"
-              />
+              <Image src={selectedImageUrl} alt="Imagen ampliada" fill className="object-contain" />
             </div>
           )}
         </DialogContent>

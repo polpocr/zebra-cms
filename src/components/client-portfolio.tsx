@@ -88,43 +88,43 @@ export default function ClientPortfolio() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
               {filteredClients.map((client) => (
-              <div
-                key={client._id}
-                className="group relative bg-gray-100 rounded-lg md:rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
-              >
-                <div className="relative aspect-square overflow-hidden">
-                  {client.imageUrl ? (
-                    <Image
-                      src={client.imageUrl}
-                      alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                <div
+                  key={client._id}
+                  className="group relative bg-gray-100 rounded-lg md:rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    {client.imageUrl ? (
+                      <Image
+                        src={client.imageUrl}
+                        alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gray-200" />
+                    )}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent)",
+                      }}
                     />
-                  ) : (
-                    <div className="w-full h-full bg-gray-200" />
-                  )}
-                  <div
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent)",
-                    }}
-                  />
-                </div>
-                <div className="p-3 md:p-4 lg:p-6">
-                  <p className="text-xs md:text-sm text-foreground/60 mb-1 md:mb-2">Cliente :</p>
-                  <p className="text-sm md:text-base lg:text-lg font-semibold text-foreground mb-2 md:mb-3">
-                    {client.name}
-                  </p>
-                  <div
-                    className="inline-block px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium text-white uppercase tracking-wide"
-                    style={{ backgroundColor: getCategoryColor(client.categoryId) }}
-                  >
-                    {getCategoryName(client.categoryId)}
+                  </div>
+                  <div className="p-3 md:p-4 lg:p-6">
+                    <p className="text-xs md:text-sm text-foreground/60 mb-1 md:mb-2">Cliente :</p>
+                    <p className="text-sm md:text-base lg:text-lg font-semibold text-foreground mb-2 md:mb-3">
+                      {client.name}
+                    </p>
+                    <div
+                      className="inline-block px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium text-white uppercase tracking-wide"
+                      style={{ backgroundColor: getCategoryColor(client.categoryId) }}
+                    >
+                      {getCategoryName(client.categoryId)}
+                    </div>
                   </div>
                 </div>
-              </div>
               ))}
             </div>
           )}

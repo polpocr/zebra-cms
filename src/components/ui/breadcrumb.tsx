@@ -1,9 +1,9 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { ChevronRight, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
 
 export function Breadcrumbs() {
   const pathname = usePathname()

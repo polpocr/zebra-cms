@@ -1,4 +1,4 @@
-# Zebra CMS - Cursor Rules
+# Zebra CMS - Agent Instructions
 
 ## Stack Tecnológico
 - **Framework**: Next.js 16.1.3 con App Router

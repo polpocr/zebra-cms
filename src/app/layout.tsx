@@ -2,11 +2,11 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
-import { Toaster } from "@/components/ui/sonner"
-import { ClerkProvider } from "@clerk/nextjs"
-import { esES } from "@clerk/localizations"
-import { ConvexClientProvider } from "../providers/convex-client-provider"
 import { SiteLayout } from "@/components/site-layout"
+import { Toaster } from "@/components/ui/sonner"
+import { esES } from "@clerk/localizations"
+import { ClerkProvider } from "@clerk/nextjs"
+import { ConvexClientProvider } from "../providers/convex-client-provider"
 
 const interSans = Inter({
   variable: "--font-inter-sans",
@@ -121,11 +121,7 @@ export default function RootLayout({
         </head>
         <body className={`${interSans.variable} antialiased`} suppressHydrationWarning>
           {/* JSON-LD Structured Data */}
-          <Script
-            id="organization-schema"
-            type="application/ld+json"
-            strategy="beforeInteractive"
-          >
+          <Script id="organization-schema" type="application/ld+json" strategy="beforeInteractive">
             {JSON.stringify(organizationSchema)}
           </Script>
 

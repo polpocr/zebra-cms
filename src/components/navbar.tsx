@@ -1,12 +1,12 @@
 "use client"
 
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import { Menu, Search } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 
 const navItems = [
   { href: "/", label: "Inicio" },
@@ -71,8 +71,8 @@ export function Navbar() {
                 </Link>
               )
             })}
-            <button 
-              type="button" 
+            <button
+              type="button"
               aria-label="Buscar"
               className="p-2 hover:bg-white/10 rounded-md transition-colors duration-200"
             >
@@ -81,9 +81,9 @@ export function Navbar() {
           </div>
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-3">
-            <button 
-              type="button" 
-              className="p-2 flex items-center justify-center hover:bg-white/10 rounded-md transition-colors duration-200" 
+            <button
+              type="button"
+              className="p-2 flex items-center justify-center hover:bg-white/10 rounded-md transition-colors duration-200"
               aria-label="Buscar"
             >
               <Search className="w-5 h-5 text-white" />

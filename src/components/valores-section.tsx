@@ -18,14 +18,18 @@ const valores: Valor[] = [
     title: "Creatividad",
     description:
       "Fomentamos la innovación y la originalidad en todos nuestros proyectos. Buscamos soluciones únicas y frescas que destaquen y sorprendan, superando las expectativas de nuestros clientes.",
-    icon: <HiOutlineRocketLaunch className="w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 text-black stroke-[1.5]" />,
+    icon: (
+      <HiOutlineRocketLaunch className="w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 text-black stroke-[1.5]" />
+    ),
   },
   {
     id: "excelencia",
     title: "Excelencia",
     description:
       "Nos comprometemos a entregar trabajos de la más alta calidad en cada aspecto de nuestro servicio. Desde la conceptualización hasta la ejecución, buscamos la perfección y la superioridad en cada proyecto.",
-    icon: <HiOutlineStar className="w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 text-black stroke-[1.5]" />,
+    icon: (
+      <HiOutlineStar className="w-16 h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 text-black stroke-[1.5]" />
+    ),
   },
   {
     id: "profesionalismo",
@@ -86,9 +90,14 @@ export default function ValoresSection() {
       {/* Values Grid */}
       <div className="flex flex-wrap gap-6 md:gap-8 lg:gap-12 xl:gap-16">
         {valores.map((valor) => (
-          <div key={valor.id} className="flex flex-col items-center md:items-start text-center md:text-left w-full md:w-[45%]">
+          <div
+            key={valor.id}
+            className="flex flex-col items-center md:items-start text-center md:text-left w-full md:w-[45%]"
+          >
             <div className="mb-3 md:mb-4 flex justify-center md:justify-start">{valor.icon}</div>
-            <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-2 md:mb-3">{valor.title}</h3>
+            <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-black mb-2 md:mb-3">
+              {valor.title}
+            </h3>
             <p className="text-sm md:text-base lg:text-lg text-foreground/80 leading-relaxed">
               {valor.description}
             </p>

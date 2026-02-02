@@ -1,7 +1,5 @@
 "use client"
 
-import { api } from "convex/_generated/api"
-import type { Id } from "convex/_generated/dataModel"
 import { ClientForm } from "@/components/admin/client-form"
 import { DataTable } from "@/components/admin/data-table"
 import {
@@ -30,6 +28,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
+import { api } from "convex/_generated/api"
+import type { Id } from "convex/_generated/dataModel"
 import { useMutation, useQuery } from "convex/react"
 import { Building2, MoreHorizontal, Pencil, Plus, Trash2, ZoomIn } from "lucide-react"
 import Image from "next/image"
@@ -163,9 +163,7 @@ export default function ClientsPage() {
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h1 className="text-4xl font-bold tracking-tight">Clientes</h1>
-          <p className="text-muted-foreground text-lg">
-            Gestiona los clientes de tu portafolio
-          </p>
+          <p className="text-muted-foreground text-lg">Gestiona los clientes de tu portafolio</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>
@@ -238,12 +236,7 @@ export default function ClientsPage() {
           <DialogTitle className="sr-only">Imagen ampliada</DialogTitle>
           {selectedImageUrl && (
             <div className="relative aspect-square w-full max-h-[80vh]">
-              <Image
-                src={selectedImageUrl}
-                alt="Imagen ampliada"
-                fill
-                className="object-contain"
-              />
+              <Image src={selectedImageUrl} alt="Imagen ampliada" fill className="object-contain" />
             </div>
           )}
         </DialogContent>

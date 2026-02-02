@@ -1,7 +1,5 @@
 "use client"
 
-import { api } from "convex/_generated/api"
-import type { Id } from "convex/_generated/dataModel"
 import { CategoryForm } from "@/components/admin/category-form"
 import { DataTable } from "@/components/admin/data-table"
 import {
@@ -31,6 +29,8 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
+import { api } from "convex/_generated/api"
+import type { Id } from "convex/_generated/dataModel"
 import { useMutation, useQuery } from "convex/react"
 import { MoreHorizontal, Pencil, Plus, Tag, Trash2 } from "lucide-react"
 import { useState } from "react"
@@ -131,9 +131,7 @@ export default function CategoriesPage() {
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <h1 className="text-4xl font-bold tracking-tight">Categorías</h1>
-          <p className="text-muted-foreground text-lg">
-            Organiza tus clientes por categorías
-          </p>
+          <p className="text-muted-foreground text-lg">Organiza tus clientes por categorías</p>
         </div>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger asChild>

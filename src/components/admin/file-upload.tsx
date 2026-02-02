@@ -1,9 +1,7 @@
 "use client"
 
-import { api } from "convex/_generated/api"
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { useAction } from "convex/react"
 import { Upload, X } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
@@ -19,13 +17,11 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
   const [uploading, setUploading] = useState(false)
   const [progress, setProgress] = useState(0)
   const [preview, setPreview] = useState<string | null>(value || null)
-  const generateUploadUrl = useAction(api.files.generateUploadUrl)
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
 
-    // Show preview
     const reader = new FileReader()
     reader.onload = (e) => {
       setPreview(e.target?.result as string)
@@ -36,34 +32,25 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
       setUploading(true)
       setProgress(0)
 
-      // Get upload URL from Convex
-      const { uploadUrl, publicUrl } = await generateUploadUrl({
-        fileName: file.name,
-        contentType: file.type,
+      const formData = new FormData()
+      formData.set("file", file)
+
+      const response = await fetch("/api/upload-image", {
+        method: "POST",
+        body: formData,
       })
 
-      // Upload to S3
-      const response = await fetch(uploadUrl, {
-        method: "PUT",
-        body: file,
-        headers: {
-          "Content-Type": file.type,
-        },
-      })
-
+      const data = await response.json().catch(() => ({}))
       if (!response.ok) {
-        throw new Error("Upload failed")
+        throw new Error(data.error ?? "Error al subir")
       }
 
-      // Simulate progress
       setProgress(100)
-
-      // Use the public URL returned from Convex
-      onChange(publicUrl)
-      toast.success("Archivo subido exitosamente")
+      onChange(data.url)
+      toast.success("Archivo subido y optimizado")
     } catch (error) {
       console.error("Upload error:", error)
-      toast.error("Error al subir el archivo")
+      toast.error(error instanceof Error ? error.message : "Error al subir el archivo")
       setPreview(null)
     } finally {
       setUploading(false)

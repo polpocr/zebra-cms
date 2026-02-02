@@ -17,7 +17,9 @@ export function CentroAmericaSection() {
             />
           </div>
           <div className="flex flex-col gap-4 md:gap-6">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">Somos regionales</h2>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+              Somos regionales
+            </h2>
             <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
               Zebra nació en Costa Rica, pero nuestra manada es internacional. Nos movemos con
               agilidad por Centroamérica y el Caribe, con aliados estratégicos y equipos en cada

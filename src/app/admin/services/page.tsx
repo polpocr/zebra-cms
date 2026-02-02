@@ -1,6 +1,5 @@
 "use client"
 
-import { api } from "convex/_generated/api"
 import type { Id } from "@/../../convex/_generated/dataModel"
 import { DataTable } from "@/components/admin/data-table"
 import { ServiceForm } from "@/components/admin/service-form"
@@ -30,6 +29,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Skeleton } from "@/components/ui/skeleton"
 import type { ColumnDef } from "@tanstack/react-table"
+import { api } from "convex/_generated/api"
 import { useMutation, useQuery } from "convex/react"
 import { Briefcase, MoreHorizontal, Pencil, Plus, Trash2, ZoomIn } from "lucide-react"
 import Image from "next/image"
@@ -237,12 +237,7 @@ export default function ServicesPage() {
           <DialogTitle className="sr-only">Imagen ampliada</DialogTitle>
           {selectedImageUrl && (
             <div className="relative aspect-square w-full max-h-[80vh]">
-              <Image
-                src={selectedImageUrl}
-                alt="Imagen ampliada"
-                fill
-                className="object-contain"
-              />
+              <Image src={selectedImageUrl} alt="Imagen ampliada" fill className="object-contain" />
             </div>
           )}
         </DialogContent>

@@ -1,9 +1,9 @@
-import type { Metadata } from "next"
 import { ServicesSection } from "@/components/services-section"
+import { StructuredData } from "@/components/structured-data"
 import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { StructuredData } from "@/components/structured-data"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 

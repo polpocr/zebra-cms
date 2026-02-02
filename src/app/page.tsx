@@ -1,4 +1,3 @@
-import type { Metadata } from "next"
 import { BrandsSection } from "@/components/brands-section"
 import { CentroAmericaSection } from "@/components/centro-america-section"
 import { InstagramGallery } from "@/components/instagram-gallery"
@@ -6,6 +5,7 @@ import { Marquee } from "@/components/marquee"
 import { Portfolio } from "@/components/portfolio"
 import { Statistics } from "@/components/statistics"
 import { StructuredData } from "@/components/structured-data"
+import type { Metadata } from "next"
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 

@@ -23,7 +23,17 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { useClerk, useUser } from "@clerk/nextjs"
-import { Award, Briefcase, Building2, LayoutDashboard, LogOut, MessageSquare, Tag, User, Users } from "lucide-react"
+import {
+  Award,
+  Briefcase,
+  Building2,
+  LayoutDashboard,
+  LogOut,
+  MessageSquare,
+  Tag,
+  User,
+  Users,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -100,7 +110,10 @@ export default function AdminLayout({
       <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarHeader className="border-b">
-            <Link href="/admin" className="flex items-center justify-center p-6 transition-opacity hover:opacity-80">
+            <Link
+              href="/admin"
+              className="flex items-center justify-center p-6 transition-opacity hover:opacity-80"
+            >
               <Image
                 src="/logo.svg"
                 alt="Logo"
@@ -125,7 +138,11 @@ export default function AdminLayout({
                       (pathname.startsWith(`${item.url}/`) && item.url !== "/admin")
                     return (
                       <SidebarMenuItem key={item.url}>
-                        <SidebarMenuButton asChild isActive={isActive} className="transition-all duration-200">
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive}
+                          className="transition-all duration-200"
+                        >
                           <Link href={item.url}>
                             <Icon className="size-4" />
                             <span>{item.title}</span>

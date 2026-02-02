@@ -107,8 +107,8 @@ export default function ContactoPage() {
             <div className="flex justify-end mb-8 md:mb-12">
               <div className="max-w-2xl">
                 <p className="text-base md:text-lg text-foreground/80 mb-3 md:mb-4 leading-relaxed">
-                  Hablemos, tomemos café, hagamos brain-storming: lo importante es ponernos en sintonía
-                  para crear algo espectacular.
+                  Hablemos, tomemos café, hagamos brain-storming: lo importante es ponernos en
+                  sintonía para crear algo espectacular.
                 </p>
                 <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
                   ¡Escribinos y hagamos manada
