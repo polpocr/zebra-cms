@@ -23,14 +23,10 @@ export function BrandsSection() {
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8 md:mb-12 text-foreground uppercase px-4">
             MARCAS QUE SON PARTE DE NUESTRA MANADA
           </h2>
-          <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
+          <div className="flex items-center justify-center gap-6 md:gap-10 flex-wrap">
             {Array.from({ length: 5 }, (_, index) => `skeleton-brand-${index}`).map((key) => (
-              <div key={key} className="shrink-0 w-32 md:w-48 text-center">
-                <div className="mb-3 md:mb-4">
-                  <div className="h-12 w-12 md:h-16 md:w-16 mx-auto bg-accent rounded-lg animate-pulse" />
-                </div>
-                <div className="h-5 md:h-6 w-20 md:w-24 mx-auto bg-accent rounded animate-pulse mb-1" />
-                <div className="h-3 md:h-4 w-28 md:w-32 mx-auto bg-accent rounded animate-pulse" />
+              <div key={key} className="shrink-0 w-40 md:w-52 text-center">
+                <div className="h-20 w-20 md:h-28 md:w-28 mx-auto bg-accent rounded-lg animate-pulse" />
               </div>
             ))}
           </div>
@@ -50,12 +46,12 @@ export function BrandsSection() {
           MARCAS QUE SON PARTE DE NUESTRA MANADA
         </h2>
 
-        <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
+        <div className="flex items-center justify-center gap-6 md:gap-10 flex-wrap">
           {brands.map((brand) => (
-            <div key={brand._id} className="shrink-0 w-32 md:w-48 text-center">
+            <div key={brand._id} className="shrink-0 w-40 md:w-52 text-center">
               <div className="mb-3 md:mb-4">
                 {brand.logoUrl ? (
-                  <div className="relative h-12 w-12 md:h-16 md:w-16 mx-auto">
+                  <div className="relative h-20 w-20 md:h-28 md:w-28 mx-auto">
                     <Image
                       src={brand.logoUrl}
                       alt={`Logo de ${brand.name}${brand.tagline ? ` - ${brand.tagline}` : ""}`}
@@ -69,10 +65,6 @@ export function BrandsSection() {
                   </div>
                 )}
               </div>
-              <div className="text-base md:text-lg font-semibold text-foreground mb-1">
-                {brand.name}
-              </div>
-              <div className="text-xs md:text-sm text-foreground/70">{brand.tagline}</div>
             </div>
           ))}
         </div>

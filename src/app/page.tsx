@@ -43,17 +43,24 @@ export default function Home() {
   return (
     <>
       <section
-        className="relative w-full min-h-[60vh] md:h-screen bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/hero-image.jpg')",
-        }}
+        className="relative w-full min-h-[60vh] md:h-screen overflow-hidden"
         aria-label="Hero section"
       >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/images/hero-image.jpg"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-black/50" />
       </section>
 
       <section className="container mx-auto px-4 py-12 md:py-20 lg:py-24 mt-12 md:mt-16 lg:mt-20 flex flex-col gap-8 md:gap-12">
-        <Marquee text={"*PLANTEAMIENTO * ESTRATEGIA * EJECUCIÓN * RESULTADOS *"} />
+        <Marquee text={"PLANTEAMIENTO * ESTRATEGIA * EJECUCIÓN * RESULTADOS"} />
         <p className="text-base md:text-lg lg:text-xl text-foreground/80 text-center px-4 md:px-8 leading-relaxed max-w-4xl mx-auto">
           Zebra Producciones somos una agencia de marketing que nos integramos a tu equipo para
           crear soluciones efectivas, creativas y llenas de impacto. Construimos tus ideas,

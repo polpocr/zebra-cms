@@ -52,13 +52,13 @@ export function Portfolio() {
               href="/portfolio"
               className="group relative aspect-[4/3] overflow-hidden rounded-lg"
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full bg-white p-4 md:p-6">
                 {client.imageUrl ? (
                   <Image
                     src={client.imageUrl}
                     alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
                     fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                 ) : (

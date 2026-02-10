@@ -26,7 +26,7 @@ export const get = query({
 export const create = mutation({
   args: {
     name: v.string(),
-    tagline: v.string(),
+    tagline: v.optional(v.string()),
     logoUrl: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
@@ -57,11 +57,12 @@ export const update = mutation({
     if (!identity) {
       throw new Error("Unauthenticated")
     }
-    const { id, ...updates } = args
-    await ctx.db.patch(id, {
-      ...updates,
-      updatedAt: Date.now(),
-    })
+    const { id, name, tagline, logoUrl } = args
+    const patch: Record<string, unknown> = { updatedAt: Date.now() }
+    if (name !== undefined) patch.name = name
+    if (tagline !== undefined) patch.tagline = tagline
+    if (logoUrl !== undefined) patch.logoUrl = logoUrl
+    await ctx.db.patch(id, patch)
   },
 })
 

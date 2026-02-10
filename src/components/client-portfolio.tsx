@@ -92,13 +92,13 @@ export default function ClientPortfolio() {
                   key={client._id}
                   className="group relative bg-gray-100 rounded-lg md:rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="relative aspect-square overflow-hidden">
+                  <div className="relative aspect-square overflow-hidden bg-white p-4 md:p-6">
                     {client.imageUrl ? (
                       <Image
                         src={client.imageUrl}
                         alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-contain transition-transform duration-500 group-hover:scale-110"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                     ) : (

@@ -180,15 +180,39 @@ export default function ContactoPage() {
               </button>
             </form>
 
-            {/* Right Column - Image */}
-            <div className="max-h-[720px] overflow-hidden md:col-span-1">
+            {/* Right Column - Image with contact info overlay */}
+            <div className="relative max-h-[720px] overflow-hidden md:col-span-1">
               <Image
-                src="/images/contact.png"
+                src="/images/contact.jpg"
                 alt="Zebra Producciones - Contacto"
                 width={700}
                 height={500}
-                className="w-full h-auto grayscale"
+                className="w-full h-full object-cover grayscale"
               />
+              <div
+                className="absolute inset-y-0 left-[58%] flex flex-col justify-center text-white z-10 -translate-x-1/2"
+              >
+                <div className="space-y-3 md:space-y-4 text-sm md:text-base">
+                  <div>
+                    <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
+                      Teléfono
+                    </p>
+                    <p className="font-semibold text-lg md:text-xl">+(506) 4070-4111</p>
+                  </div>
+                  <div>
+                    <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
+                      Correo electrónico
+                    </p>
+                    <p className="font-semibold text-lg md:text-xl">manada@zebracr.com</p>
+                  </div>
+                  <div>
+                    <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
+                      Ubicación
+                    </p>
+                    <p className="font-semibold text-lg md:text-xl">San José, Costa Rica</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

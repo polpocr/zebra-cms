@@ -39,7 +39,7 @@ import { toast } from "sonner"
 type Brand = {
   _id: Id<"brands">
   name: string
-  tagline: string
+  tagline?: string
   logoUrl?: string
   createdAt: number
   updatedAt: number
@@ -130,8 +130,8 @@ export default function BrandsPage() {
       accessorKey: "tagline",
       header: "Tagline",
       cell: ({ row }) => {
-        const tagline = row.getValue("tagline") as string
-        return <div className="max-w-md truncate">{tagline}</div>
+        const tagline = row.getValue("tagline") as string | undefined
+        return <div className="max-w-md truncate text-muted-foreground">{tagline ?? "—"}</div>
       },
     },
     {

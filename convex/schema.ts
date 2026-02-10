@@ -53,7 +53,7 @@ export default defineSchema({
 
   brands: defineTable({
     name: v.string(),
-    tagline: v.string(),
+    tagline: v.optional(v.string()),
     logoUrl: v.optional(v.string()),
     createdAt: v.number(),
     updatedAt: v.number(),

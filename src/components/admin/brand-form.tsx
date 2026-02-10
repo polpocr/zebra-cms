@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { api } from "convex/_generated/api"
 import type { Id } from "convex/_generated/dataModel"
 import { useMutation } from "convex/react"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
@@ -23,7 +23,7 @@ import { FileUpload } from "./file-upload"
 
 const brandSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
-  tagline: z.string().min(1, "El tagline es requerido"),
+  tagline: z.string().optional(),
   logoUrl: z.string().optional(),
 })
 
@@ -33,7 +33,7 @@ interface BrandFormProps {
   initialData?: {
     _id: Id<"brands">
     name: string
-    tagline: string
+    tagline?: string
     logoUrl?: string
   }
   onSuccess?: () => void
@@ -52,13 +52,18 @@ export function BrandForm({ initialData, onSuccess }: BrandFormProps) {
     },
   })
 
+  const prevIdRef = useRef<Id<"brands"> | null>(null)
   useEffect(() => {
-    form.reset({
-      name: initialData?.name || "",
-      tagline: initialData?.tagline || "",
-      logoUrl: initialData?.logoUrl || "",
-    })
-  }, [initialData, form])
+    const id = initialData?._id ?? null
+    if (id !== prevIdRef.current) {
+      prevIdRef.current = id
+      form.reset({
+        name: initialData?.name ?? "",
+        tagline: initialData?.tagline ?? "",
+        logoUrl: initialData?.logoUrl ?? "",
+      })
+    }
+  }, [initialData?._id, initialData?.name, initialData?.tagline, initialData?.logoUrl, form])
 
   const onSubmit = async (values: BrandFormValues) => {
     try {
@@ -66,14 +71,14 @@ export function BrandForm({ initialData, onSuccess }: BrandFormProps) {
         await update({
           id: initialData._id,
           name: values.name,
-          tagline: values.tagline,
-          logoUrl: values.logoUrl,
+          tagline: values.tagline ?? undefined,
+          logoUrl: values.logoUrl ?? undefined,
         })
         toast.success("Marca actualizada exitosamente")
       } else {
         await create({
           name: values.name,
-          tagline: values.tagline,
+          tagline: values.tagline || undefined,
           logoUrl: values.logoUrl,
         })
         toast.success("Marca creada exitosamente")
@@ -107,7 +112,7 @@ export function BrandForm({ initialData, onSuccess }: BrandFormProps) {
           name="tagline"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Tagline</FormLabel>
+              <FormLabel>Tagline (opcional)</FormLabel>
               <FormControl>
                 <Textarea {...field} rows={3} />
               </FormControl>
