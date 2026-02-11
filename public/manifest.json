@@ -1,0 +1,17 @@
+{
+  "name": "Zebra Producciones - Agencia de Marketing y Publicidad",
+  "short_name": "Zebra Producciones",
+  "description": "Agencia de marketing que se integra a tu equipo para crear soluciones efectivas, creativas y llenas de impacto.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#7660A0",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}

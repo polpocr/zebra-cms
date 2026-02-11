@@ -8,6 +8,14 @@ export const list = query({
   },
 })
 
+export const getLatest = query({
+  args: { limit: v.optional(v.number()) },
+  handler: async (ctx, args) => {
+    const limit = args.limit ?? 4
+    return await ctx.db.query("clients").order("desc").take(limit)
+  },
+})
+
 export const count = query({
   args: {},
   handler: async (ctx) => {

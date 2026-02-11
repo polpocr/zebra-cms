@@ -12,7 +12,7 @@ export function Marquee({ text, duration = 12, className = "" }: MarqueeProps) {
   return (
     <div className={`overflow-hidden whitespace-nowrap ${className}`}>
       <motion.div
-        className="inline-flex"
+        className="inline-flex flex-nowrap"
         animate={{
           x: ["0%", "-50%"],
         }}
@@ -25,8 +25,12 @@ export function Marquee({ text, duration = 12, className = "" }: MarqueeProps) {
           },
         }}
       >
-        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">{text}</span>
-        <span className="text-4xl md:text-4xl font-bold uppercase tracking-wider mx-8">{text}</span>
+        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8 whitespace-nowrap">
+          {text}
+        </span>
+        <span className="text-2xl md:text-4xl font-bold uppercase tracking-wider mx-4 md:mx-8 whitespace-nowrap">
+          {text}
+        </span>
       </motion.div>
     </div>
   )

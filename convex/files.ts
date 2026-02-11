@@ -1,10 +1,10 @@
 "use node"
 
+import { randomUUID } from "node:crypto"
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 import { v } from "convex/values"
 import { action } from "./_generated/server"
-import { randomUUID } from "node:crypto"
 
 function getRequiredEnvVar(name: string): string {
   const value = process.env[name]
@@ -41,13 +41,13 @@ export const generateUploadUrl = action({
 
     // Validate all required environment variables
     const bucketName = getRequiredEnvVar("S3_BUCKET_NAME")
-    
+
     if (!accessKeyId) {
       throw new Error(
         "AWS_ACCESS_KEY_ID environment variable is not set. Please configure it in the Convex Dashboard under Settings → Environment Variables."
       )
     }
-    
+
     if (!secretAccessKey) {
       throw new Error(
         "AWS_SECRET_ACCESS_KEY environment variable is not set. Please configure it in the Convex Dashboard under Settings → Environment Variables."
