@@ -23,7 +23,7 @@ export function Footer() {
               Servicio al cliente:
             </h3>
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-xs">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              ¿Tenés dudas sobre un proyecto, una cotización o un servicio? Escribinos y te ayudamos.
             </p>
             <div className="flex flex-col gap-3 text-sm md:text-base">
               <a
@@ -41,43 +41,43 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Explore Column */}
+          {/* Explorar Column */}
           <div className="flex flex-col gap-4 text-left items-center md:items-start">
             <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">
-              Explore:
+              Explorar:
             </h3>
             <nav className="flex flex-col gap-3">
               <Link
                 href="/acerca-de"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
-                About
+                Acerca de
               </Link>
               <Link
                 href="/servicios"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
-                Service
+                Servicios
               </Link>
               <Link
                 href="/portfolio"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
-                Portfolio
+                Portafolio
               </Link>
               <Link
                 href="/contacto"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
-                Contact
+                Contacto
               </Link>
             </nav>
           </div>
 
-          {/* Social Media Column */}
+          {/* Redes sociales Column */}
           <div className="flex flex-col gap-4 items-center md:items-end text-left md:text-right w-full md:w-auto">
             <h3 className="text-white font-semibold text-base md:text-lg tracking-tight">
-              Social Media:
+              Redes sociales:
             </h3>
             <div className="flex gap-4 justify-start md:justify-end">
               <a
