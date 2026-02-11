@@ -33,10 +33,10 @@ export function Footer() {
                 manada@zebracr.com
               </a>
               <a
-                href="tel:+50640704111"
+                href="tel:+50683745365"
                 className="text-white/90 hover:text-white transition-colors duration-200"
               >
-                +(506) 4070-4111
+                +506 83745365
               </a>
             </div>
           </div>

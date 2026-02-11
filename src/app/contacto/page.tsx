@@ -197,7 +197,7 @@ export default function ContactoPage() {
                     <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
                       Teléfono
                     </p>
-                    <p className="font-semibold text-lg md:text-xl">+(506) 4070-4111</p>
+                    <p className="font-semibold text-lg md:text-xl">+506 83745365</p>
                   </div>
                   <div>
                     <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
