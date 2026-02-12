@@ -23,7 +23,8 @@ export function Footer() {
               Servicio al cliente:
             </h3>
             <p className="text-white/70 text-sm md:text-base leading-relaxed max-w-xs">
-              ¿Tenés dudas sobre un proyecto, una cotización o un servicio? Escribinos y te ayudamos.
+              ¿Tenés dudas sobre un proyecto, una cotización o un servicio? Escribinos y te
+              ayudamos.
             </p>
             <div className="flex flex-col gap-3 text-sm md:text-base">
               <a
