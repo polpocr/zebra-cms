@@ -189,9 +189,7 @@ export default function ContactoPage() {
                 height={500}
                 className="w-full h-full object-cover grayscale"
               />
-              <div
-                className="absolute inset-y-0 left-[58%] flex flex-col justify-center text-white z-10 -translate-x-1/2"
-              >
+              <div className="absolute inset-y-0 left-[58%] flex flex-col justify-center text-white z-10 -translate-x-1/2">
                 <div className="space-y-3 md:space-y-4 text-sm md:text-base">
                   <div>
                     <p className="text-white/80 text-xs md:text-sm uppercase tracking-wider">
