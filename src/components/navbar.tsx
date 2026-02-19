@@ -13,7 +13,7 @@ const navItems = [
   { href: "/acerca-de", label: "Acerca de" },
   { href: "/servicios", label: "Servicios" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "/contacto", label: "Contácto" },
+  { href: "/contacto", label: "Contacto" },
 ]
 
 export function Navbar() {

@@ -64,7 +64,7 @@ export function Footer() {
                 href="/portfolio"
                 className="text-white/70 hover:text-white text-sm md:text-base transition-colors duration-200 hover:translate-x-1 inline-block"
               >
-                Portafolio
+                Portfolio
               </Link>
               <Link
                 href="/contacto"
