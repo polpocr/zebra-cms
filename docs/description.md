@@ -23,7 +23,7 @@ Colores para tags:
 - Acerca de
 - Servicios
 - Portfolio
-- Contácto
+- Contacto
 
 ## Contenido (Entidades) de CMS
 

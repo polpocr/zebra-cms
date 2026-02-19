@@ -9,14 +9,14 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 export const metadata: Metadata = {
   title: "Acerca de Nosotros",
   description:
-    "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+    "Somos tu equipo extendido. Con más de 3000 proyectos completados en 9 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
   alternates: {
     canonical: `${baseUrl}/acerca-de`,
   },
   openGraph: {
     title: "Acerca de Nosotros - Zebra Producciones",
     description:
-      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 9 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
     url: `${baseUrl}/acerca-de`,
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Acerca de Nosotros - Zebra Producciones",
     description:
-      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+      "Somos tu equipo extendido. Con más de 3000 proyectos completados en 9 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
     images: [`${baseUrl}/images/about_image.jpg`],
   },
 }
@@ -94,7 +94,7 @@ export default function AcercaDePage() {
                   y materializar ideas que eleven tu marca.
                 </p>
                 <p className="text-base md:text-lg lg:text-xl text-foreground/80 leading-relaxed">
-                  Con más de 3000 proyectos completados en 8 años, sabemos que la clave del éxito
+                  Con más de 3000 proyectos completados en 9 años, sabemos que la clave del éxito
                   está en la mezcla de creatividad, ejecución impecable y la actitud para ir más
                   allá.
                 </p>
@@ -113,7 +113,7 @@ export default function AcercaDePage() {
           "@type": "AboutPage",
           name: "Acerca de Zebra Producciones",
           description:
-            "Somos tu equipo extendido. Con más de 3000 proyectos completados en 8 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
+            "Somos tu equipo extendido. Con más de 3000 proyectos completados en 9 años, construimos estrategias y diseñamos experiencias que elevan tu marca.",
           url: `${baseUrl}/acerca-de`,
           mainEntity: {
             "@type": "Organization",
