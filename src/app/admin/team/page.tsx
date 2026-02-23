@@ -20,6 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -188,20 +189,15 @@ export default function TeamPage() {
           <p className="text-muted-foreground text-center max-w-sm mb-6">
             Comienza agregando los integrantes de tu equipo para mostrarlos en tu sitio web.
           </p>
-          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-            <DialogTrigger asChild>
-              <Button onClick={() => setEditingMember(null)}>
-                <Plus className="mr-2 h-4 w-4" />
-                Agregar Primer Integrante
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle className="text-2xl">Nuevo Integrante</DialogTitle>
-              </DialogHeader>
-              <TeamForm onSuccess={handleDialogClose} />
-            </DialogContent>
-          </Dialog>
+          <Button
+            onClick={() => {
+              setEditingMember(null)
+              setDialogOpen(true)
+            }}
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Agregar Primer Integrante
+          </Button>
         </div>
       ) : (
         <DataTable columns={columns} data={members} />
