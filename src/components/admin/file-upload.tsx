@@ -3,8 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { Upload, X } from "lucide-react"
-import Image from "next/image"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 interface FileUploadProps {
@@ -18,15 +17,13 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
   const [progress, setProgress] = useState(0)
   const [preview, setPreview] = useState<string | null>(value || null)
 
+  useEffect(() => {
+    setPreview(value || null)
+  }, [value])
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      setPreview(e.target?.result as string)
-    }
-    reader.readAsDataURL(file)
 
     try {
       setUploading(true)
@@ -51,7 +48,6 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
     } catch (error) {
       console.error("Upload error:", error)
       toast.error(error instanceof Error ? error.message : "Error al subir el archivo")
-      setPreview(null)
     } finally {
       setUploading(false)
       setProgress(0)
@@ -59,7 +55,6 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
   }
 
   const handleRemove = () => {
-    setPreview(null)
     onChange("")
   }
 
@@ -67,7 +62,7 @@ export function FileUpload({ value, onChange, accept = "image/*" }: FileUploadPr
     <div className="space-y-4">
       {preview ? (
         <div className="relative w-full h-48 border rounded-md overflow-hidden">
-          <Image src={preview} alt="Preview" fill className="object-cover" />
+          <img src={preview} alt="Preview" className="w-full h-full object-cover" />
           <Button
             type="button"
             variant="destructive"
