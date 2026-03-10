@@ -24,11 +24,11 @@ import { useMutation, useQuery } from "convex/react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
-import { FileUpload } from "./file-upload"
+import { MultiFileUpload } from "./multi-file-upload"
 
 const clientSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
-  imageUrl: z.string().optional(),
+  imageUrls: z.array(z.string()).max(3).optional(),
   categoryId: z.string().min(1, "La categoría es requerida"),
 })
 
@@ -39,6 +39,7 @@ interface ClientFormProps {
     _id: Id<"clients">
     name: string
     imageUrl?: string
+    imageUrls?: string[]
     categoryId: Id<"clientCategories">
   }
   onSuccess?: () => void
@@ -49,29 +50,42 @@ export function ClientForm({ initialData, onSuccess }: ClientFormProps) {
   const update = useMutation(api.clients.update)
   const categories = useQuery(api.categories.list)
 
+  // Migrate legacy single imageUrl to array
+  const defaultImageUrls = initialData?.imageUrls?.length
+    ? initialData.imageUrls
+    : initialData?.imageUrl
+      ? [initialData.imageUrl]
+      : []
+
   const form = useForm<ClientFormValues>({
     resolver: zodResolver(clientSchema),
     defaultValues: {
       name: initialData?.name || "",
-      imageUrl: initialData?.imageUrl || "",
+      imageUrls: defaultImageUrls,
       categoryId: initialData?.categoryId || "",
     },
   })
 
   const onSubmit = async (values: ClientFormValues) => {
     try {
+      const imageUrls = values.imageUrls ?? []
+      // Keep imageUrl as first image for backwards compat
+      const imageUrl = imageUrls[0]
+
       if (initialData) {
         await update({
           id: initialData._id,
           name: values.name,
-          imageUrl: values.imageUrl,
+          imageUrl,
+          imageUrls,
           categoryId: values.categoryId as Id<"clientCategories">,
         })
         toast.success("Cliente actualizado exitosamente")
       } else {
         await create({
           name: values.name,
-          imageUrl: values.imageUrl,
+          imageUrl,
+          imageUrls,
           categoryId: values.categoryId as Id<"clientCategories">,
         })
         toast.success("Cliente creado exitosamente")
@@ -125,12 +139,12 @@ export function ClientForm({ initialData, onSuccess }: ClientFormProps) {
         />
         <FormField
           control={form.control}
-          name="imageUrl"
+          name="imageUrls"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Imagen</FormLabel>
+              <FormLabel>Imágenes (máx. 3)</FormLabel>
               <FormControl>
-                <FileUpload value={field.value} onChange={field.onChange} />
+                <MultiFileUpload value={field.value} onChange={field.onChange} max={3} />
               </FormControl>
               <FormMessage />
             </FormItem>

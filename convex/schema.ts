@@ -28,6 +28,7 @@ export default defineSchema({
   clients: defineTable({
     name: v.string(),
     imageUrl: v.optional(v.string()),
+    imageUrls: v.optional(v.array(v.string())),
     categoryId: v.id("clientCategories"),
     createdAt: v.number(),
     updatedAt: v.number(),

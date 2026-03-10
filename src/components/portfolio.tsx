@@ -53,9 +53,9 @@ export function Portfolio() {
               className="group relative aspect-[4/3] overflow-hidden rounded-lg"
             >
               <div className="relative w-full h-full bg-white p-4 md:p-6">
-                {client.imageUrl ? (
+                {(client.imageUrls?.[0] ?? client.imageUrl) ? (
                   <Image
-                    src={client.imageUrl}
+                    src={(client.imageUrls?.[0] ?? client.imageUrl) as string}
                     alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
                     fill
                     className="object-contain transition-transform duration-300 group-hover:scale-105"

@@ -35,6 +35,7 @@ export const create = mutation({
   args: {
     name: v.string(),
     imageUrl: v.optional(v.string()),
+    imageUrls: v.optional(v.array(v.string())),
     categoryId: v.id("clientCategories"),
   },
   handler: async (ctx, args) => {
@@ -46,6 +47,7 @@ export const create = mutation({
     return await ctx.db.insert("clients", {
       name: args.name,
       imageUrl: args.imageUrl,
+      imageUrls: args.imageUrls,
       categoryId: args.categoryId,
       createdAt: now,
       updatedAt: now,
@@ -58,6 +60,7 @@ export const update = mutation({
     id: v.id("clients"),
     name: v.optional(v.string()),
     imageUrl: v.optional(v.string()),
+    imageUrls: v.optional(v.array(v.string())),
     categoryId: v.optional(v.id("clientCategories")),
   },
   handler: async (ctx, args) => {
