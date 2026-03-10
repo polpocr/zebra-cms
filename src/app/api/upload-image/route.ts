@@ -55,14 +55,15 @@ export async function POST(request: Request) {
 
   try {
     const buffer = Buffer.from(await file.arrayBuffer())
-    const pipeline = sharp(buffer)
-    const metadata = await pipeline.metadata()
+    const metadata = await sharp(buffer).metadata()
     const { format } = metadata
 
     let optimized: Buffer
     let outputExt: string
     let contentType: string
     const width = metadata.width ?? 0
+
+    const pipeline = sharp(buffer)
 
     if (width > MAX_WIDTH) {
       pipeline.resize(MAX_WIDTH, undefined, { withoutEnlargement: true })
@@ -94,6 +95,10 @@ export async function POST(request: Request) {
         optimized = await pipeline.jpeg({ quality: JPEG_QUALITY }).toBuffer()
         outputExt = ".jpg"
         contentType = "image/jpeg"
+    }
+
+    if (!optimized.length) {
+      return NextResponse.json({ error: "Error al procesar la imagen" }, { status: 500 })
     }
 
     const key = `uploads/${randomUUID()}${outputExt}`
