@@ -3,87 +3,139 @@
 import { api } from "convex/_generated/api"
 import type { Id } from "convex/_generated/dataModel"
 import { useQuery } from "convex/react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
-function ClientCarousel({ images, name }: { images: string[]; name: string }) {
+interface ClientData {
+  _id: Id<"clients">
+  name: string
+  imageUrl?: string
+  imageUrls?: string[]
+  categoryId: Id<"clientCategories">
+}
+
+function getClientImages(client: ClientData): string[] {
+  if (client.imageUrls?.length) return client.imageUrls
+  if (client.imageUrl) return [client.imageUrl]
+  return []
+}
+
+function CarouselDialog({
+  client,
+  onClose,
+}: {
+  client: ClientData
+  onClose: () => void
+}) {
+  const images = getClientImages(client)
   const [current, setCurrent] = useState(0)
 
-  if (images.length === 0) return <div className="w-full h-full bg-gray-200" />
+  const prev = useCallback(
+    () => setCurrent((c) => (c - 1 + images.length) % images.length),
+    [images.length]
+  )
+  const next = useCallback(() => setCurrent((c) => (c + 1) % images.length), [images.length])
 
-  if (images.length === 1) {
-    return (
-      <Image
-        src={images[0]}
-        alt={`Proyecto de ${name} - Portfolio Zebra Producciones`}
-        fill
-        className="object-contain transition-transform duration-500 group-hover:scale-110"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      />
-    )
-  }
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose()
+      if (e.key === "ArrowLeft") prev()
+      if (e.key === "ArrowRight") next()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => window.removeEventListener("keydown", onKey)
+  }, [onClose, prev, next])
 
   return (
-    <div className="relative w-full h-full">
-      {images.map((url, i) => (
-        <div
-          key={url}
-          className={`absolute inset-0 transition-opacity duration-300 ${i === current ? "opacity-100" : "opacity-0"}`}
+    <dialog
+      open
+      className="fixed inset-0 z-50 m-0 flex h-screen w-screen max-w-none max-h-none items-center justify-center border-none bg-black/70 p-0 backdrop-blur-sm"
+      onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") onClose()
+      }}
+      aria-label={`Galería de ${client.name}`}
+    >
+      <div
+        className="relative w-[90vw] max-w-3xl overflow-hidden rounded-xl bg-white shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-3 top-3 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-black/80"
+          aria-label="Cerrar galería"
         >
-          <Image
-            src={url}
-            alt={`Proyecto de ${name} ${i + 1} - Portfolio Zebra Producciones`}
-            fill
-            className="object-contain"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          />
+          <X className="h-4 w-4" />
+        </button>
+
+        <div className="relative aspect-[4/3] bg-white">
+          {images.length > 0 ? (
+            images.map((url, i) => (
+              <div
+                key={url}
+                className={`absolute inset-0 p-6 transition-opacity duration-300 ${i === current ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              >
+                <Image
+                  src={url}
+                  alt={`${client.name} - imagen ${i + 1}`}
+                  fill
+                  className="object-contain"
+                  sizes="90vw"
+                />
+              </div>
+            ))
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-gray-400">
+              Sin imágenes
+            </div>
+          )}
+
+          {images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={prev}
+                className="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+                aria-label="Imagen anterior"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70"
+                aria-label="Imagen siguiente"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </>
+          )}
         </div>
-      ))}
 
-      {/* Prev / Next */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault()
-          setCurrent((c) => (c - 1 + images.length) % images.length)
-        }}
-        className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-opacity opacity-0 group-hover:opacity-100"
-        aria-label="Imagen anterior"
-      >
-        <ChevronLeft className="w-4 h-4 text-black" />
-      </button>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.preventDefault()
-          setCurrent((c) => (c + 1) % images.length)
-        }}
-        className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/80 hover:bg-white flex items-center justify-center shadow transition-opacity opacity-0 group-hover:opacity-100"
-        aria-label="Imagen siguiente"
-      >
-        <ChevronRight className="w-4 h-4 text-black" />
-      </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10">
-        {images.map((_, i) => (
-          <button
-            key={`dot-${
-              // biome-ignore lint/suspicious/noArrayIndexKey: dots are positional
-              i
-            }`}
-            type="button"
-            onClick={(e) => {
-              e.preventDefault()
-              setCurrent(i)
-            }}
-            className={`w-1.5 h-1.5 rounded-full transition-colors ${i === current ? "bg-white" : "bg-white/50"}`}
-            aria-label={`Ir a imagen ${i + 1}`}
-          />
-        ))}
+        <div className="p-4 md:p-6">
+          <p className="text-lg font-semibold">{client.name}</p>
+          {images.length > 1 && (
+            <div className="mt-3 flex gap-1.5">
+              {images.map((_, i) => (
+                <button
+                  key={`dot-${
+                    // biome-ignore lint/suspicious/noArrayIndexKey: positional dots
+                    i
+                  }`}
+                  type="button"
+                  onClick={() => setCurrent(i)}
+                  className={`h-2 w-2 rounded-full transition-colors ${i === current ? "bg-black" : "bg-black/25"}`}
+                  aria-label={`Ir a imagen ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </dialog>
   )
 }
 
@@ -93,10 +145,11 @@ export default function ClientPortfolio() {
   const [selectedCategory, setSelectedCategory] = useState<Id<"clientCategories"> | "Todos">(
     "Todos"
   )
+  const [selectedClient, setSelectedClient] = useState<ClientData | null>(null)
 
   if (!clients || !categories) {
     return (
-      <div className="w-full py-8 md:py-12 lg:py-16 bg-white container mx-auto px-4">
+      <div className="container mx-auto w-full px-4 py-8 md:py-12 lg:py-16">
         <div className="text-center">Cargando...</div>
       </div>
     )
@@ -118,7 +171,7 @@ export default function ClientPortfolio() {
 
   if (clients.length === 0) {
     return (
-      <div className="w-full py-8 md:py-12 lg:py-16 bg-white container mx-auto px-4">
+      <div className="container mx-auto w-full px-4 py-8 md:py-12 lg:py-16">
         <div className="text-center text-muted-foreground">
           No hay clientes disponibles en este momento.
         </div>
@@ -129,12 +182,12 @@ export default function ClientPortfolio() {
   return (
     <>
       {/* Filter Bar */}
-      <div className="w-full bg-black container mx-auto p-3 md:p-4 rounded-xl mx-4 md:mx-auto">
-        <div className="w-full flex flex-wrap gap-2 md:gap-4 justify-center md:justify-around bg-black rounded-xl">
+      <div className="container mx-auto w-full rounded-xl bg-black p-3 md:p-4">
+        <div className="flex w-full flex-wrap justify-center gap-2 rounded-xl bg-black md:justify-around md:gap-4">
           <button
             type="button"
             onClick={() => setSelectedCategory("Todos")}
-            className={`px-3 py-1.5 md:p-2 text-xs md:text-sm lg:text-base cursor-pointer font-medium transition-all duration-200 rounded-lg md:rounded-xl ${
+            className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${
               selectedCategory === "Todos"
                 ? "bg-[#22B7E8] text-blue-950"
                 : "text-white hover:text-white/80"
@@ -147,7 +200,7 @@ export default function ClientPortfolio() {
               key={category._id}
               type="button"
               onClick={() => setSelectedCategory(category._id)}
-              className={`px-3 py-1.5 md:p-2 text-xs md:text-sm lg:text-base cursor-pointer font-medium transition-all duration-200 rounded-lg md:rounded-xl ${
+              className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${
                 selectedCategory === category._id
                   ? "bg-[#22B7E8] text-blue-950"
                   : "text-white hover:text-white/80"
@@ -160,57 +213,70 @@ export default function ClientPortfolio() {
       </div>
 
       {/* Client Cards Grid */}
-      <section className="w-full py-8 md:py-12 lg:py-16 bg-white container mx-auto px-4">
+      <section className="container mx-auto w-full bg-white px-4 py-8 md:py-12 lg:py-16">
         <div className="w-full">
           {filteredClients.length === 0 ? (
-            <div className="text-center text-muted-foreground py-8">
+            <div className="py-8 text-center text-muted-foreground">
               No hay clientes en esta categoría.
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
               {filteredClients.map((client) => {
-                const images = client.imageUrls?.length
-                  ? client.imageUrls
-                  : client.imageUrl
-                    ? [client.imageUrl]
-                    : []
+                const images = getClientImages(client)
+                const thumb = images[0]
 
                 return (
-                  <div
+                  <button
                     key={client._id}
-                    className="group relative bg-gray-100 rounded-lg md:rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+                    type="button"
+                    onClick={() => setSelectedClient(client)}
+                    className="group relative cursor-pointer overflow-hidden rounded-lg bg-gray-100 text-left shadow-sm transition-all duration-300 hover:shadow-lg md:rounded-xl"
                   >
                     <div className="relative aspect-square overflow-hidden bg-white p-4 md:p-6">
-                      <ClientCarousel images={images} name={client.name} />
+                      {thumb ? (
+                        <Image
+                          src={thumb}
+                          alt={`Proyecto de ${client.name} - Portfolio Zebra Producciones`}
+                          fill
+                          className="object-contain transition-transform duration-500 group-hover:scale-110"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
+                      ) : (
+                        <div className="h-full w-full bg-gray-200" />
+                      )}
                       <div
-                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                         style={{
                           background:
-                            "linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent)",
+                            "linear-gradient(to top, rgba(0,0,0,0.6), transparent, transparent)",
                         }}
                       />
                     </div>
                     <div className="p-3 md:p-4 lg:p-6">
-                      <p className="text-xs md:text-sm text-foreground/60 mb-1 md:mb-2">
+                      <p className="mb-1 text-xs text-foreground/60 md:mb-2 md:text-sm">
                         Cliente :
                       </p>
-                      <p className="text-sm md:text-base lg:text-lg font-semibold text-foreground mb-2 md:mb-3">
+                      <p className="mb-2 text-sm font-semibold text-foreground md:mb-3 md:text-base lg:text-lg">
                         {client.name}
                       </p>
                       <div
-                        className="inline-block px-2.5 py-1 md:px-3 md:py-1.5 rounded-lg md:rounded-xl text-xs md:text-sm font-medium text-white uppercase tracking-wide"
+                        className="inline-block rounded-lg px-2.5 py-1 text-xs font-medium uppercase tracking-wide text-white md:rounded-xl md:px-3 md:py-1.5 md:text-sm"
                         style={{ backgroundColor: getCategoryColor(client.categoryId) }}
                       >
                         {getCategoryName(client.categoryId)}
                       </div>
                     </div>
-                  </div>
+                  </button>
                 )
               })}
             </div>
           )}
         </div>
       </section>
+
+      {selectedClient && (
+        <CarouselDialog client={selectedClient} onClose={() => setSelectedClient(null)} />
+      )}
     </>
   )
 }
