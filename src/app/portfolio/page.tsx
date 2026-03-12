@@ -1,7 +1,6 @@
-"use client"
-
 import ClientPortfolio from "@/components/client-portfolio"
 import Image from "next/image"
+import { Suspense } from "react"
 
 export default function PortfolioPage() {
   return (
@@ -72,7 +71,9 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <ClientPortfolio />
+      <Suspense fallback={<div className="container mx-auto w-full px-4 py-8 text-center">Cargando...</div>}>
+        <ClientPortfolio />
+      </Suspense>
     </>
   )
 }
