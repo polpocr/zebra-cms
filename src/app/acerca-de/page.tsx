@@ -41,7 +41,7 @@ export default function AcercaDePage() {
     <>
       <section className="relative w-full min-h-screen">
         {/* Image - full width, partial height */}
-        <div className="relative w-full h-[50vh] md:h-[65vh]">
+        <div className="relative w-full h-[50vh] md:h-[65vh] lg:h-[80vh]">
           <Image
             src="/images/banners/Banner acerca de .jpeg"
             alt="Acerca de Zebra Producciones - Equipo de marketing y publicidad"
@@ -62,9 +62,9 @@ export default function AcercaDePage() {
             </h2>
           </div>
           {/* Desktop: Vertical, left side - visible only on LG */}
-          <div className="hidden lg:flex absolute top-[20vh] left-4 md:left-8 lg:left-[10vw] h-full items-end gap-1 md:gap-2">
+          <div className="hidden lg:flex absolute bottom-0 left-[10vw] h-full items-end gap-2">
             <h1
-              className="text-[32px] md:text-[42px] lg:text-[96px] font-bold leading-none [writing-mode:vertical-lr] rotate-180 tracking-tight text-white z-50 whitespace-nowrap"
+              className="text-[clamp(32px,11vh,96px)] font-bold leading-none [writing-mode:vertical-lr] rotate-180 tracking-tight text-white z-50 whitespace-nowrap"
               style={{
                 textShadow:
                   "-2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black, -2px 0 0 black, 2px 0 0 black, 0 -2px 0 black, 0 2px 0 black",
@@ -73,7 +73,7 @@ export default function AcercaDePage() {
               ACERCA DE
             </h1>
             <h2
-              className="text-[24px] md:text-[32px] lg:text-[72px] font-bold leading-none [writing-mode:vertical-lr] rotate-180 tracking-tight text-black z-50 whitespace-nowrap"
+              className="text-[clamp(24px,8.5vh,72px)] font-bold leading-none [writing-mode:vertical-lr] rotate-180 tracking-tight text-black z-50 whitespace-nowrap"
               style={{
                 textShadow:
                   "-2px -2px 0 white, 2px -2px 0 white, -2px 2px 0 white, 2px 2px 0 white, -2px 0 0 white, 2px 0 0 white, 0 -2px 0 white, 0 2px 0 white",
