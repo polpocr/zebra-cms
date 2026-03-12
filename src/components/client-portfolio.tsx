@@ -6,6 +6,7 @@ import { useQuery } from "convex/react"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
 import { useCallback, useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 
 interface ClientData {
   _id: Id<"clients">
@@ -142,9 +143,20 @@ function CarouselDialog({
 export default function ClientPortfolio() {
   const clients = useQuery(api.clients.list)
   const categories = useQuery(api.categories.list)
+  const searchParams = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState<Id<"clientCategories"> | "Todos">(
     "Todos"
   )
+
+  // Pre-select category from query param once categories load
+  useEffect(() => {
+    const param = searchParams.get("categoria")
+    if (!param || !categories) return
+    const match = categories.find(
+      (cat) => cat.name.toLowerCase() === decodeURIComponent(param).toLowerCase()
+    )
+    if (match) setSelectedCategory(match._id)
+  }, [categories, searchParams])
   const [selectedClient, setSelectedClient] = useState<ClientData | null>(null)
 
   if (!clients || !categories) {
@@ -188,8 +200,8 @@ export default function ClientPortfolio() {
             type="button"
             onClick={() => setSelectedCategory("Todos")}
             className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${selectedCategory === "Todos"
-                ? "bg-[#22B7E8] text-blue-950"
-                : "text-white hover:text-white/80"
+              ? "bg-[#22B7E8] text-blue-950"
+              : "text-white hover:text-white/80"
               }`}
           >
             Todos
@@ -200,8 +212,8 @@ export default function ClientPortfolio() {
               type="button"
               onClick={() => setSelectedCategory(category._id)}
               className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${selectedCategory === category._id
-                  ? "bg-[#22B7E8] text-blue-950"
-                  : "text-white hover:text-white/80"
+                ? "bg-[#22B7E8] text-blue-950"
+                : "text-white hover:text-white/80"
                 }`}
             >
               {category.name}

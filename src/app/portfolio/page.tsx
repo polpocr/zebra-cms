@@ -10,10 +10,10 @@ export default function PortfolioPage() {
         {/* Image - full width, partial height */}
         <div className="relative w-full h-[50vh] md:h-[65vh]">
           <Image
-            src="/images/portfolio-image.jpg"
+            src="/images/banners/banner portafolio.png"
             alt="Portfolio - Nuestros Clientes - Zebra Producciones"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
           {/* Black overlay - darker on mobile */}

@@ -44,10 +44,10 @@ export default function ServiciosPage() {
         {/* Image - full width, partial height */}
         <div className="relative w-full h-[50vh] md:h-[65vh]">
           <Image
-            src="/images/service_image.jpg"
+            src="/images/banners/Banner servicios.png"
             alt="Nuestros Servicios - Zebra Producciones"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
           {/* Black overlay - darker on mobile */}

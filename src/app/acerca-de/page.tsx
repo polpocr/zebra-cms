@@ -43,10 +43,10 @@ export default function AcercaDePage() {
         {/* Image - full width, partial height */}
         <div className="relative w-full h-[50vh] md:h-[65vh]">
           <Image
-            src="/images/about_image.jpg"
+            src="/images/banners/Banner acerca de .jpeg"
             alt="Acerca de Zebra Producciones - Equipo de marketing y publicidad"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
           {/* Black overlay - darker on mobile */}

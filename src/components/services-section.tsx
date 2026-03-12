@@ -3,6 +3,7 @@
 import { api } from "convex/_generated/api"
 import { useQuery } from "convex/react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function ServicesSection() {
   const services = useQuery(api.services.list)
@@ -29,8 +30,9 @@ export function ServicesSection() {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
         {services.map((service) => (
-          <div
+          <Link
             key={service._id}
+            href={`/portfolio?categoria=${encodeURIComponent(service.title)}`}
             className="group flex flex-col bg-white rounded-lg md:rounded-xl overflow-hidden shadow-md border border-gray-200/60 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ease-out cursor-pointer"
           >
             <div className="relative w-full aspect-square rounded-t-lg md:rounded-t-xl overflow-hidden bg-gray-100">
@@ -55,7 +57,7 @@ export function ServicesSection() {
                 {service.description}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -58,10 +58,10 @@ export default function ContactoPage() {
         {/* Header Image - full width, partial height with black overlay */}
         <div className="relative w-full h-[50vh] md:h-[65vh]">
           <Image
-            src="/images/contact-image.png"
+            src="/images/banners/banner contacto .png"
             alt="Contacto - Zebra Producciones - Seamos manada"
             fill
-            className="object-cover object-center grayscale"
+            className="object-cover object-top grayscale"
             priority
           />
 
