@@ -82,7 +82,7 @@ export function Footer() {
             </h3>
             <div className="flex gap-4 justify-start md:justify-end">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/zbp.team"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center transition-all duration-200 hover:scale-110 hover:opacity-80"
@@ -97,7 +97,7 @@ export function Footer() {
                 />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/zebraproducciones.cr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center transition-all duration-200 hover:scale-110 hover:opacity-80"
