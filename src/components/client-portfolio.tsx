@@ -5,8 +5,8 @@ import type { Id } from "convex/_generated/dataModel"
 import { useQuery } from "convex/react"
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 import Image from "next/image"
-import { useCallback, useEffect, useState } from "react"
 import { useSearchParams } from "next/navigation"
+import { useCallback, useEffect, useState } from "react"
 
 interface ClientData {
   _id: Id<"clients">
@@ -125,7 +125,7 @@ function CarouselDialog({
                   key={`dot-${
                     // biome-ignore lint/suspicious/noArrayIndexKey: positional dots
                     i
-                    }`}
+                  }`}
                   type="button"
                   onClick={() => setCurrent(i)}
                   className={`h-2 w-2 rounded-full transition-colors ${i === current ? "bg-black" : "bg-black/25"}`}
@@ -199,10 +199,11 @@ export default function ClientPortfolio() {
           <button
             type="button"
             onClick={() => setSelectedCategory("Todos")}
-            className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${selectedCategory === "Todos"
-              ? "bg-[#22B7E8] text-blue-950"
-              : "text-white hover:text-white/80"
-              }`}
+            className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${
+              selectedCategory === "Todos"
+                ? "bg-[#22B7E8] text-blue-950"
+                : "text-white hover:text-white/80"
+            }`}
           >
             Todos
           </button>
@@ -211,10 +212,11 @@ export default function ClientPortfolio() {
               key={category._id}
               type="button"
               onClick={() => setSelectedCategory(category._id)}
-              className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${selectedCategory === category._id
-                ? "bg-[#22B7E8] text-blue-950"
-                : "text-white hover:text-white/80"
-                }`}
+              className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 md:rounded-xl md:p-2 md:text-sm lg:text-base ${
+                selectedCategory === category._id
+                  ? "bg-[#22B7E8] text-blue-950"
+                  : "text-white hover:text-white/80"
+              }`}
             >
               {category.name}
             </button>

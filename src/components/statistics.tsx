@@ -76,7 +76,10 @@ export function Statistics() {
       className="container mx-auto px-4 pt-0 pb-12 md:pb-20 lg:pb-24 flex justify-center items-center"
       aria-label="Estadísticas de Zebra Producciones"
     >
-      <div ref={ref} className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 mx-auto">
+      <div
+        ref={ref}
+        className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-0 mx-auto"
+      >
         <StatCircle
           target={9}
           label="AÑOS"

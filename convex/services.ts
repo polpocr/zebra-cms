@@ -1,10 +1,16 @@
 import { v } from "convex/values"
 import { mutation, query } from "./_generated/server"
+import { toCdnUrl } from "./cdnUrl"
+
+function mapService<T extends { imageUrl?: string }>(service: T): T {
+  return { ...service, imageUrl: toCdnUrl(service.imageUrl) }
+}
 
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db.query("services").order("desc").collect()
+    const services = await ctx.db.query("services").order("desc").collect()
+    return services.map(mapService)
   },
 })
 
@@ -19,7 +25,8 @@ export const count = query({
 export const get = query({
   args: { id: v.id("services") },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.id)
+    const service = await ctx.db.get(args.id)
+    return service ? mapService(service) : null
   },
 })
 

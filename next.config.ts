@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "zebra.cms.s3.us-east-1.amazonaws.com",
+        hostname: "d1tqn3oceyjk7h.cloudfront.net",
       },
     ],
   },

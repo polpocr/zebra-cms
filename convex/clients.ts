@@ -1,10 +1,20 @@
 import { v } from "convex/values"
 import { mutation, query } from "./_generated/server"
+import { toCdnUrl } from "./cdnUrl"
+
+function mapClient<T extends { imageUrl?: string; imageUrls?: string[] }>(client: T): T {
+  return {
+    ...client,
+    imageUrl: toCdnUrl(client.imageUrl),
+    imageUrls: client.imageUrls?.map((url) => toCdnUrl(url) ?? url),
+  }
+}
 
 export const list = query({
   args: {},
   handler: async (ctx) => {
-    return await ctx.db.query("clients").order("desc").collect()
+    const clients = await ctx.db.query("clients").order("desc").collect()
+    return clients.map(mapClient)
   },
 })
 
@@ -12,7 +22,8 @@ export const getLatest = query({
   args: { limit: v.optional(v.number()) },
   handler: async (ctx, args) => {
     const limit = args.limit ?? 4
-    return await ctx.db.query("clients").order("desc").take(limit)
+    const clients = await ctx.db.query("clients").order("desc").take(limit)
+    return clients.map(mapClient)
   },
 })
 
@@ -27,7 +38,8 @@ export const count = query({
 export const get = query({
   args: { id: v.id("clients") },
   handler: async (ctx, args) => {
-    return await ctx.db.get(args.id)
+    const client = await ctx.db.get(args.id)
+    return client ? mapClient(client) : null
   },
 })
 

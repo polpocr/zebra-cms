@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto"
+import { cdnPublicUrl } from "@/lib/cdn-url"
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
 import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
@@ -113,7 +114,7 @@ export async function POST(request: Request) {
       })
     )
 
-    const publicUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${key}`
+    const publicUrl = cdnPublicUrl(key)
 
     return NextResponse.json({ url: publicUrl })
   } catch (err) {

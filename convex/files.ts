@@ -5,6 +5,7 @@ import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3"
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner"
 import { v } from "convex/values"
 import { action } from "./_generated/server"
+import { cdnPublicUrl } from "./cdnUrl"
 
 function getRequiredEnvVar(name: string): string {
   const value = process.env[name]
@@ -70,7 +71,7 @@ export const generateUploadUrl = action({
 
     const url = await getSignedUrl(s3Client, command, { expiresIn: 3600 })
 
-    const publicUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${key}`
+    const publicUrl = cdnPublicUrl(key)
 
     return {
       uploadUrl: url,

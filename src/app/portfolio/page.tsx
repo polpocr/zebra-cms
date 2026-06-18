@@ -71,7 +71,9 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <Suspense fallback={<div className="container mx-auto w-full px-4 py-8 text-center">Cargando...</div>}>
+      <Suspense
+        fallback={<div className="container mx-auto w-full px-4 py-8 text-center">Cargando...</div>}
+      >
         <ClientPortfolio />
       </Suspense>
     </>
